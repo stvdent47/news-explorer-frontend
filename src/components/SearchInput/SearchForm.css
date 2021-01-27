@@ -1,0 +1,16 @@
+.search-form {
+  margin: 0;
+  padding: 0 0 80px;
+}
+
+.search-form__input {
+  max-height: 64px;
+  font-size: 16px;
+  line-height: 22px;
+  border: red;
+  background-color: #fff;
+  max-width: calc(100% - 40px);
+  width: 100%;
+  border-radius: 100px;
+  padding: 21px 0 21px 24px;
+}
