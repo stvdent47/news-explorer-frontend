@@ -1,0 +1,14 @@
+.news-list {
+  background-color: #f5f6f7;
+}
+
+.news-list__heading {
+  font-family: Roboto Slab;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 115%;
+  max-width: 712px;
+  width: 100%;
+  margin: 0;
+  padding: 80px 104px 64px;
+}

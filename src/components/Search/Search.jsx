@@ -8,6 +8,7 @@ const Search = () => {
       <h1 className="search__heading">Что творится в мире?</h1>
       <p className="search__text">Находите самые свежие статьи на любую тему и сохраняйте в своём личном кабинете.</p>
       <SearchForm />
+      
     </section>
   )
 };
