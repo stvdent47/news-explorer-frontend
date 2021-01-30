@@ -4,11 +4,13 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
   box-shadow: inset 0px -1px 0px rgba(255, 255, 255, 0.2);
 }
 
 .header__heading {
   font-family: 'Roboto Slab', 'Arial', sans-serif;
+  font-weight: 700;
   font-size: 20px;
   line-height: 120%;
   color: #fff;

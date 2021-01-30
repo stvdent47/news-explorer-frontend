@@ -6,7 +6,7 @@ const Header = () => {
   return (
     <header className='header'>
       <p className='header__heading'>NewsExplorer</p>
-      <Navbar />
+      <Navbar username='TESTINGTESTINGTESTING' />
     </header>
   );
 }

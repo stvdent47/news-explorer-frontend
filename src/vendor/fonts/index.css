@@ -88,3 +88,10 @@
   font-weight: 400;
   src: url(./RobotoSlab/RobotoSlab-Regular.ttf) format('truetype');
 }
+
+@font-face {
+  font-family: 'Roboto Slab';
+  font-style: normal;
+  font-weight: 700;
+  src: url(./RobotoSlab/RobotoSlab-Bold.ttf) format('truetype');
+}
