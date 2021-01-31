@@ -2,17 +2,23 @@ import React from 'react';
 import './NewsCard.css';
 
 const NewsCard = (props) => {
-  return (
-    <li>
-      <img src={props.card.image} alt=""/>
-      <p>{props.card.date}</p>
-      <p>{props.card.title}</p>
-      <p>{props.card.text}</p>
-      <p>{props.card.source}</p>
-      <a href={props.card.link} target='blank'>link</a>
-    </li>
-  )
+  // 'saved' is just for mock displaying
+  const { image, date, title, text, source, link, saved } = props.card;
 
-}
+  return (
+    <li className='news-list__item'>
+      <a href={link} target='blank'>
+        <img src={image} alt={title} className='news-list__image' />
+      </a>
+      <p className='news-list__date'>{date}</p>
+      <p className='news-list__title'>{title}</p>
+      <p className='news-list__text'>{text}</p>
+      <a href={link} className='news-list__source'>
+        {source}
+      </a>
+      <button className={`news-list__save-button ${saved === '1' && 'news-list__save-button_active'}`} />
+    </li>
+  );
+};
 
 export default NewsCard;

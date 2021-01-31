@@ -95,3 +95,10 @@
   font-weight: 700;
   src: url(./RobotoSlab/RobotoSlab-Bold.ttf) format('truetype');
 }
+
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-style: normal;
+  font-weight: 400;
+  src: url(./SourceSansPro/SourceSansPro-Regular.ttf) format('truetype');
+}
