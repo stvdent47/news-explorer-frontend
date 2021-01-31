@@ -100,7 +100,3 @@
 .news-list__save-button_active {
   background-image: url(../../images/save-article-button_marked.svg);
 }
-
-/* text-overflow: ellipsis;
-white-space: nowrap;
-overflow: hidden; */

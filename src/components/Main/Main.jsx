@@ -1,11 +1,10 @@
 import React from 'react';
 import './Main.css';
-
+// components
 import Header from '../Header/Header.jsx';
 import Search from '../Search/Search.jsx';
 import NewsCardList from '../NewsCardList/NewsCardList.jsx';
-import Loader from '../Loader/Loader.jsx';
-
+// mock data for news card displaying
 import newsCards from '../../mockData/cards.json';
 
 const Main = () => {
@@ -15,7 +14,7 @@ const Main = () => {
         <Header />
         <Search />
       </div>
-      <Loader />
+
       <NewsCardList newsCards={newsCards} />
     </>
   );

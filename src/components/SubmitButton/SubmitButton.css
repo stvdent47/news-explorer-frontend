@@ -16,4 +16,9 @@
 
 .submit-button:hover {
   cursor: pointer;
+  background-color: #347eff;
+}
+
+.submit-button:focus {
+  background-color: #2a65cc;
 }
