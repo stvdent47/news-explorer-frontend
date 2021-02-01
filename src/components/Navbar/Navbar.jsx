@@ -1,8 +1,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import signoutIcon from '../../images/signout-icon.svg';
 
 import './Navbar.css';
+import signoutIcon from '../../images/signout-icon.svg';
 
 const Navbar = (props) => {
   return (

@@ -2,6 +2,7 @@ import React from 'react';
 import './NoSearchResults.css';
 
 import NotFoundImage from '../../images/not-found-image.svg';
+// text constants
 import { NO_SEARCH_RESULT_HEADING, NO_SEARCH_RESULT_TEXT } from '../../utils/constants.js';
 
 const NoSearchResults = () => {
