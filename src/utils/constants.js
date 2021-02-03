@@ -1,3 +1,4 @@
+export const HEADER_TITLE = 'NewsExplorer';
 export const MAIN_PAGE_NAME = 'Главная';
 export const SAVED_NEWS_PAGE_NAME = 'Сохранённые статьи';
 export const SIGNIN_MODAL_NAME = 'Авторизоваться';

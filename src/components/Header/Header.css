@@ -8,6 +8,10 @@
   box-shadow: inset 0px -1px 0px rgba(255, 255, 255, 0.2);
 }
 
+.header_black {
+  box-shadow: inset 0px -1px 0px #d1d2d6;
+}
+
 .header__heading {
   text-decoration: none;
   padding: 0;
@@ -24,3 +28,6 @@
   padding: 0;
 }
 
+.header__text_black {
+  color: #1a1b22;
+}
