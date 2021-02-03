@@ -18,8 +18,8 @@ const Main = () => {
       </div>
 
       <Loader />
-      <NewsCardList newsCards={newsCards} />
-      <NoSearchResults />
+      <NewsCardList newsCards={newsCards} componentPage='main'/>
+      <NoSearchResults componentPage='main' />
     </>
   );
 };

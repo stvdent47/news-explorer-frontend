@@ -3,7 +3,9 @@ import './SavedNews.css';
 
 import Header from '../Header/Header.jsx';
 import SavedNewsHeader from '../SavedNewsHeader/SavedNewsHeader.jsx';
-import NewsCardList from '../NewsCardList/NewsCardList';
+import Loader from '../Loader/Loader.jsx';
+import NewsCardList from '../NewsCardList/NewsCardList.jsx';
+import NoSearchResults from '../NoSearchResults/NoSearchResults.jsx';
 
 import newsCards from '../../mockData/cards.json';
 
@@ -12,7 +14,9 @@ const SavedNews = () => {
     <>
       <Header headerBlack={true}/>
       <SavedNewsHeader />
-      <NewsCardList newsCards={newsCards} />
+      <Loader />
+      <NewsCardList newsCards={newsCards} componentPage='savedNews' />
+      <NoSearchResults />
     </>
   )
 };
