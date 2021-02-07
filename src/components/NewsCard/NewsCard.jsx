@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import './NewsCard.css';
-
+// contexts
+import { CurrentPageContext } from '../../contexts/currentPageContext/currentPageContext.js';
+// text constants
 import { SAVE_BUTTON_TOOLTIP_TEXT, REMOVE_BUTTON_TOOLTIP_TEXT } from '../../utils/constants.js';
 
 const NewsCard = (props) => {
+  const currentPage = useContext(CurrentPageContext);
+
   const { image, date, title, text, source, link, saved } = props.card; // 'saved' is just for mock displaying
   // states
   const isLoggedIn = false; // temp state
@@ -19,7 +23,7 @@ const NewsCard = (props) => {
   const removeButtonTooltipStyle = `news-card__button-tooltip news-card__button-tooltip_remove ${
     isRemoveTooltipOpen ? 'news-card__button-tooltip_open' : ''
   }`;
-  
+
   return (
     <li className='news-card'>
       <a href={link} target='blank'>
@@ -31,7 +35,7 @@ const NewsCard = (props) => {
       <a href={link} className='news-card__source'>
         {source}
       </a>
-      {props.componentPage === 'main' ? (
+      {currentPage.currentPageLink === '/main' ? (
         <>
           <button
             className={saveButtonStyle}
