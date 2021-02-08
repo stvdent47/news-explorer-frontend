@@ -145,3 +145,20 @@
 .news-card__button-tooltip_open {
   display: block;
 }
+
+.news-card__keyword {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  font-size: 14px;
+  line-height: 24px;
+  font-weight: 500;
+  max-width: 115px;
+  background-color: #fff;
+  margin: 0;
+  padding: 8px 15px;
+  border-radius: 10px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}

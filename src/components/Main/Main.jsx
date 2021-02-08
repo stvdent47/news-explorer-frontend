@@ -11,14 +11,14 @@ import { CurrentPageContext } from '../../contexts/currentPageContext/currentPag
 // mock data for news card displaying
 import newsCards from '../../mockData/cards.json';
 
-const Main = () => {
+const Main = (props) => {
   const currentPage = useContext(CurrentPageContext);
   currentPage.currentPageLink = '/main';
 
   return (
     <>
       <div className='main__background'>
-        <Header />
+        <Header openLoginModal={props.openLoginModal} />
         <Search />
       </div>
 

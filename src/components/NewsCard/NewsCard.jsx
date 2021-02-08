@@ -8,7 +8,7 @@ import { SAVE_BUTTON_TOOLTIP_TEXT, REMOVE_BUTTON_TOOLTIP_TEXT } from '../../util
 const NewsCard = (props) => {
   const currentPage = useContext(CurrentPageContext);
 
-  const { image, date, title, text, source, link, saved } = props.card; // 'saved' is just for mock displaying
+  const { image, date, title, text, source, link, keyword, saved } = props.card; // 'saved' is just for mock displaying
   // states
   const isLoggedIn = false; // temp state
   const [isSaveTooltipOpen, setIsSaveTooltipOpen] = useState(false);
@@ -52,6 +52,7 @@ const NewsCard = (props) => {
             onMouseLeave={() => setIsRemoveTooltipOpen(false)}
           />
           <p className={removeButtonTooltipStyle}>{REMOVE_BUTTON_TOOLTIP_TEXT}</p>
+          <p className='news-card__keyword'>{keyword}</p>
         </>
       )}
     </li>

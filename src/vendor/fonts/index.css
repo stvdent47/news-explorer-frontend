@@ -114,3 +114,10 @@
     url(./SourceSansPro/source-sans-pro-v14-latin_cyrillic-regular.woff) format('woff'),
     url(./SourceSansPro/source-sans-pro-v14-latin_cyrillic-regular.ttf) format('truetype');
 }
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  src: url(./Inter/Inter-Regular.woff2) format('woff2'), url(./Inter/Inter-Regular.woff) format('woff');
+}

@@ -34,7 +34,9 @@ const Navbar = (props) => {
           </NavLink>
         </li>
         <li className='navbar-list__item'>
-          <button className={navbarButtonLinkStyle}>{SIGNIN_MODAL_NAME}</button>
+          <button className={navbarButtonLinkStyle} onClick={props.openLoginModal}>
+            {SIGNIN_MODAL_NAME}
+          </button>
         </li>
         <li className='navbar-list__item'>
           <button className={navbarSignoutLinkStyle}>

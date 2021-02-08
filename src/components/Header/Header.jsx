@@ -6,7 +6,7 @@ import Navbar from '../Navbar/Navbar.jsx';
 import { CurrentPageContext } from '../../contexts/currentPageContext/currentPageContext.js';
 import { HEADER_TITLE } from '../../utils/constants.js';
 
-const Header = () => {
+const Header = (props) => {
   const currentPage = useContext(CurrentPageContext);
   const headerStyle = `header ${currentPage.currentPageLink === '/saved-news' ? 'header_black' : ''}`;
   const headerTextStyle = `header__text ${currentPage.currentPageLink === '/saved-news' ? 'header__text_black' : ''}`;
@@ -16,7 +16,7 @@ const Header = () => {
       <NavLink to='/' className='header__heading'>
         <p className={headerTextStyle}>{HEADER_TITLE}</p>
       </NavLink>
-      <Navbar username='TESTINGTESTINGTESTING' />
+      <Navbar username='TESTINGTESTINGTESTING' openLoginModal={props.openLoginModal} />
     </header>
   );
 };
