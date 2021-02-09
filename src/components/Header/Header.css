@@ -31,3 +31,9 @@
 .header__text_black {
   color: #1a1b22;
 }
+
+@media all and (max-width: 920px) {
+  .header__heading {
+    margin: 22px 0 18px 40px;
+  }
+}

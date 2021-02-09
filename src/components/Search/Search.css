@@ -23,3 +23,20 @@
   margin: 0;
   padding: 0 0 64px;
 }
+
+@media all and (max-width: 920px) {
+  .search {
+    max-width: 452px;
+  }
+
+  .search__heading {
+    max-width: 385px;
+    font-size: 36px;
+    line-height: 111%;
+    padding: 38px 0 16px;
+  }
+
+  .search__text {
+    padding: 0 0 48px;
+  }
+}

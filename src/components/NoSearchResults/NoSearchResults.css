@@ -32,3 +32,9 @@
   margin: 0;
   padding: 16px 0 0;
 }
+
+@media all and (max-width: 920px) {
+  .no-search-results {
+    padding: 43px 0 40px;
+  }
+}

@@ -67,7 +67,7 @@
 
 .navbar-list__button-link_black {
   color: #1a1b22;
-  border: 1px solid #1A1B22;
+  border: 1px solid #1a1b22;
 }
 
 .navbar-list__button-link:hover {
@@ -83,4 +83,26 @@
   width: 17px;
   height: 17px;
   padding: 0 0 0 10px;
+}
+
+@media all and (max-width: 920px) {
+  .navbar {
+    padding: 0 40px 0 0;
+  }
+
+  .navbar-list__item {
+    margin: 0 0 0 16px;
+  }
+  
+  .navbar-list__text-link {
+    font-size: 16px;
+    line-height: 24px;
+    padding: 22px 0 20px;
+  }
+  .navbar-list__button-link {
+    font-size: 16px;
+    line-height: 24px;
+    height: 40px;
+  }
+  
 }

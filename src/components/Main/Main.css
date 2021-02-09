@@ -8,3 +8,9 @@
   background-size: cover;
   padding: 0 0 80px;
 }
+
+@media all and (max-width: 920px) {
+  .main__background {
+    padding: 0 0 48px;
+  }
+}
