@@ -119,5 +119,14 @@
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
-  src: url(./Inter/Inter-Regular.woff2) format('woff2'), url(./Inter/Inter-Regular.woff) format('woff');
+  src: url(./Inter/inter-v3-latin_cyrillic-regular.woff2) format('woff2'),
+    url(./Inter/inter-v3-latin_cyrillic-regular.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  src: url(./Inter/inter-v3-latin_cyrillic-500.woff2) format('woff2'),
+    url(./Inter/inter-v3-latin_cyrillic-500.woff) format('woff');
 }

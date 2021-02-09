@@ -19,6 +19,11 @@ const App = () => {
     setIsLoginModalOpen(true);
   }
 
+  const switchToSigupModal = () => {
+    setIsLoginModalOpen(false);
+    setIsSignupModalOpen(true);
+  }
+
   const closeAllModals = () => {
     setIsLoginModalOpen(false);
     setIsSignupModalOpen(false);
@@ -36,7 +41,7 @@ const App = () => {
         </Route>
       </Switch>
       <Footer />
-      <LoginModal isOpen={isLoginModalOpen} onClose={closeAllModals} />
+      <LoginModal isOpen={isLoginModalOpen} onClose={closeAllModals} switchToSigupModal={switchToSigupModal}/>
       <SignupModal isOpen={isSignupModalOpen} onClose={closeAllModals} />
     </CurrentPageContext.Provider>
   );

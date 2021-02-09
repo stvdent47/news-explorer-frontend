@@ -8,6 +8,7 @@ import {
   MODAL_INPUT_TITLE_PASSWORD,
   EMAIL_INPUT_PLACEHOLDER,
   PASSWORD_INPUT_PLACEHOLDER,
+  MOCK_WRONG_EMAIL_INPUT,
 } from '../../utils/constants.js';
 
 const LoginModal = (props) => {
@@ -18,11 +19,30 @@ const LoginModal = (props) => {
       isOpen={props.isOpen}
       onClose={props.onClose}
       submitButtonText={LOGIN_TEXT}
+      switchToSigupModal={props.switchToSigupModal}
     >
-      <p className='modal__input-title'>{MODAL_INPUT_TITLE_EMAIL}</p>
-      <input type='text' className='modal__input' placeholder={EMAIL_INPUT_PLACEHOLDER} />
-      <p className='modal__input-title'>{MODAL_INPUT_TITLE_PASSWORD}</p>
-      <input type='text' className='modal__input' placeholder={PASSWORD_INPUT_PLACEHOLDER} />
+      <label htmlFor='emailInput' className='modal__input-title'>
+        {MODAL_INPUT_TITLE_EMAIL}
+        <input
+          type='text'
+          name='emailInput'
+          id='emailInput'
+          className='modal__input'
+          placeholder={EMAIL_INPUT_PLACEHOLDER}
+        />
+      </label>
+      <p className='modal__input-error'>{MOCK_WRONG_EMAIL_INPUT}</p>
+      <label htmlFor='' className='modal__input-title'>
+        {MODAL_INPUT_TITLE_PASSWORD}
+        <input
+          type='text'
+          name='passwordInput'
+          id='passwordInput'
+          className='modal__input'
+          placeholder={PASSWORD_INPUT_PLACEHOLDER}
+        />
+      </label>
+      <p className='modal__input-error'>{MOCK_WRONG_EMAIL_INPUT}</p>
     </ModalWithForm>
   );
 };

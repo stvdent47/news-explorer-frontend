@@ -21,3 +21,4 @@ export const EMAIL_INPUT_PLACEHOLDER = 'Введите почту';
 export const PASSWORD_INPUT_PLACEHOLDER = 'Введите пароль';
 
 export const MOCK_SAVED_NEWS_HEADING = 'Грета, у вас 5 сохранённых статей';
+export const MOCK_WRONG_EMAIL_INPUT = 'Неправильный формат email';
