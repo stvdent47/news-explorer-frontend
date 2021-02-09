@@ -24,6 +24,11 @@ const App = () => {
     setIsSignupModalOpen(true);
   }
 
+  const switchToLoginModal = () => {
+    setIsSignupModalOpen(false);
+    setIsLoginModalOpen(true);
+  }
+
   const closeAllModals = () => {
     setIsLoginModalOpen(false);
     setIsSignupModalOpen(false);
@@ -42,7 +47,7 @@ const App = () => {
       </Switch>
       <Footer />
       <LoginModal isOpen={isLoginModalOpen} onClose={closeAllModals} switchToSigupModal={switchToSigupModal}/>
-      <SignupModal isOpen={isSignupModalOpen} onClose={closeAllModals} />
+      <SignupModal isOpen={isSignupModalOpen} onClose={closeAllModals} switchToLoginModal={switchToLoginModal} />
     </CurrentPageContext.Provider>
   );
 };

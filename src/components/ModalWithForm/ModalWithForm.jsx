@@ -14,7 +14,10 @@ const ModalWithForm = (props) => {
       </p>
     ) : (
       <p className='modal__caption'>
-        или <span className='modal__caption-span'>{LOGIN_TEXT}</span>
+        или{' '}
+        <span className='modal__caption-span' onClick={props.switchToLoginModal}>
+          {LOGIN_TEXT}
+        </span>
       </p>
     );
 
@@ -24,7 +27,6 @@ const ModalWithForm = (props) => {
         <h2 className='modal__title'>{props.title}</h2>
         <form action='#'>
           {props.children}
-          <p className='modal__submit-error'>Такой пользователь уже есть</p>
           <button className='modal__submit-button'>{props.submitButtonText}</button>
         </form>
         <button className='modal__close-button' onClick={props.onClose} />

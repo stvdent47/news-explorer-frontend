@@ -31,7 +31,7 @@ const LoginModal = (props) => {
           placeholder={EMAIL_INPUT_PLACEHOLDER}
         />
       </label>
-      <p className='modal__input-error'>{MOCK_WRONG_EMAIL_INPUT}</p>
+      <p className='modal__input-error' id='emailInputError'>{MOCK_WRONG_EMAIL_INPUT}</p>
       <label htmlFor='' className='modal__input-title'>
         {MODAL_INPUT_TITLE_PASSWORD}
         <input
@@ -42,7 +42,7 @@ const LoginModal = (props) => {
           placeholder={PASSWORD_INPUT_PLACEHOLDER}
         />
       </label>
-      <p className='modal__input-error'>{MOCK_WRONG_EMAIL_INPUT}</p>
+      <p className='modal__input-error' id='passwordInputError'>{MOCK_WRONG_EMAIL_INPUT}</p>
     </ModalWithForm>
   );
 };

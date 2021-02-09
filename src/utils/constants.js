@@ -17,8 +17,10 @@ export const SIGNUP_MODAL_TITLE = 'Регистрация';
 export const SIGNUP_TEXT = 'Зарегистрироваться';
 export const MODAL_INPUT_TITLE_EMAIL = 'Email';
 export const MODAL_INPUT_TITLE_PASSWORD = 'Пароль';
+export const MODAL_INPUT_TITLE_NAME = 'Имя';
 export const EMAIL_INPUT_PLACEHOLDER = 'Введите почту';
 export const PASSWORD_INPUT_PLACEHOLDER = 'Введите пароль';
+export const NAME_INPUT_PLACEHOLDER = 'Введите своё имя';
 
 export const MOCK_SAVED_NEWS_HEADING = 'Грета, у вас 5 сохранённых статей';
 export const MOCK_WRONG_EMAIL_INPUT = 'Неправильный формат email';

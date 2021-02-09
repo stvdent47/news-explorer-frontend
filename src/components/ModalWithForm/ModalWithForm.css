@@ -51,7 +51,7 @@
   max-width: 358px;
   width: 100%;
   color: #000;
-  margin: 0 36px 31px;
+  margin: 0 36px 0;
   padding: 0 0 10px;
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
@@ -62,9 +62,37 @@
   opacity: 0.2;
 }
 
-.modal__submit-error {
+.modal__input-error {
+  font-family: 'Inter', 'Arial', sans-serif;
+  font-size: 12px;
+  line-height: 15px;
   color: #f00;
+  margin: 3px 36px 13px;
+  padding: 0;
+  /* opacity: 0; */
+}
+
+.modal__input-error:last-of-type {
+  margin: 3px 36px 0;
+}
+
+.modal__input-error_visible {
+  opacity: 1;
+}
+
+.modal__submit-error {
+  font-family: 'Inter', 'Arial', sans-serif;
+  font-size: 12px;
+  line-height: 15px;
+  color: #f00;
+  margin: 0 0 8px;
+  padding: 0;
   text-align: center;
+  /* opacity: 0; */
+}
+
+.modal__submit-error_visible {
+  opacity: 1;
 }
 
 .modal__submit-button {
