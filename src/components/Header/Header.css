@@ -44,6 +44,10 @@
   outline: none;
 }
 
+.header__burger-button_black {
+  background-image: url(../../images/burger-menu_black.svg);
+}
+
 .header__burger-button:hover {
   cursor: pointer;
 }
@@ -55,15 +59,15 @@
 }
 
 @media all and (max-width: 650px) {
-.header__heading {
-  margin: 16px;
-
-}
+  .header__heading {
+    margin: 16px;
+  }
+  
   .header__text {
     font-size: 16px;
     line-height: 150%;
   }
-  
+
   .header__burger-button {
     display: block;
   }

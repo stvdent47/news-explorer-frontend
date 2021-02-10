@@ -11,13 +11,13 @@ import { CurrentPageContext } from '../../contexts/currentPageContext/currentPag
 // mock data
 import newsCards from '../../mockData/cards.json';
 
-const SavedNews = () => {
+const SavedNews = (props) => {
   const currentPage = useContext(CurrentPageContext);
   currentPage.currentPageLink = '/saved-news';
 
   return (
     <>
-      <Header />
+      <Header toggleAuthMenu={props.toggleAuthMenu} />
       <SavedNewsHeader />
       <Loader />
       <NewsCardList newsCards={newsCards} />
