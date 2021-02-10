@@ -1,9 +1,13 @@
 import React, { useContext } from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import './Header.css';
+// components
 import Navbar from '../Navbar/Navbar.jsx';
+import HeaderAuthMenu from './HeaderAuthMenu/HeaderAuthMenu.jsx';
+// contexts
 import { CurrentPageContext } from '../../contexts/currentPageContext/currentPageContext.js';
+// text constants
 import { HEADER_TITLE } from '../../utils/constants.js';
 
 const Header = (props) => {
@@ -13,10 +17,12 @@ const Header = (props) => {
 
   return (
     <header className={headerStyle}>
-      <NavLink to='/' className='header__heading'>
+      <Link to='/' className='header__heading'>
         <p className={headerTextStyle}>{HEADER_TITLE}</p>
-      </NavLink>
+      </Link>
       <Navbar username='TESTINGTESTINGTESTING' openLoginModal={props.openLoginModal} />
+      <button className='header__burger-button' />
+      {/* <HeaderAuthMenu /> */}
     </header>
   );
 };

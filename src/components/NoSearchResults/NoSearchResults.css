@@ -38,3 +38,9 @@
     padding: 43px 0 40px;
   }
 }
+
+@media all and (max-width: 388px) {
+  .no-search-results__text {
+    max-width: 288px;
+  }
+}

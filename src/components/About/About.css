@@ -40,6 +40,20 @@
   margin: 0;
 }
 
+@media all and (max-width: 1279px) {
+  .about__photo {
+    max-width: 350px;
+    max-height: 350px;
+  }
+}
+
+@media all and (max-width: 1110px) {
+  .about__photo {
+    max-width: 300px;
+    max-height: 300px;
+  }
+}
+
 @media all and (max-width: 920px) {
   .about {
     padding: 40px 0 61px;
@@ -59,5 +73,21 @@
   .about__heading {
     font-size: 30px;
     line-height: 133%;
+  }
+}
+
+@media all and (max-width: 650px) {
+  .about {
+    flex-direction: column;
+    align-items: center;
+    padding: 32px 0 80px;
+  }
+
+  .about__photo {
+    margin: 0;
+  }
+
+  .about__text-container {
+    margin: 24px 16px 0;
   }
 }

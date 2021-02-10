@@ -8,6 +8,7 @@ import SavedNews from '../SavedNews/SavedNews.jsx';
 import Footer from '../Footer/Footer.jsx';
 import LoginModal from '../LoginModal/LoginModal.jsx';
 import SignupModal from '../SignupModal/SignupModal.jsx';
+import HeaderAuthMenu from '../Header/HeaderAuthMenu/HeaderAuthMenu.jsx';
 
 import { CurrentPageContext, currentPage } from '../../contexts/currentPageContext/currentPageContext.js';
 
@@ -48,6 +49,7 @@ const App = () => {
       <Footer />
       <LoginModal isOpen={isLoginModalOpen} onClose={closeAllModals} switchToSigupModal={switchToSigupModal}/>
       <SignupModal isOpen={isSignupModalOpen} onClose={closeAllModals} switchToLoginModal={switchToLoginModal} />
+      <HeaderAuthMenu />
     </CurrentPageContext.Provider>
   );
 };

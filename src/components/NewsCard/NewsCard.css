@@ -192,4 +192,26 @@
   .news-card__source {
     margin: 0 16px;
   }
+
+  .news-card__keyword {
+    max-width: 100px;
+  }
+  
+  .news-card__button-tooltip {
+    visibility: hidden;
+  }
+}
+
+@media all and (max-width: 767px) {
+  .news-card {
+    max-width: 288px;
+  }
+  .news-card__image {
+    height: 196px;
+  }
+
+  .news-card__title {
+    padding: 10px 16px 0;
+
+  }
 }

@@ -104,5 +104,10 @@
     line-height: 24px;
     height: 40px;
   }
-  
+}
+
+@media all and (max-width: 650px) {
+  .navbar {
+    display: none;
+  }
 }

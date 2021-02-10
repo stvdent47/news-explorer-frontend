@@ -14,3 +14,10 @@
     padding: 0 0 48px;
   }
 }
+
+@media all and (max-width: 920px) {
+  .main__background {
+    max-height: 536px;
+    padding: 0 0 32px;
+  }
+}

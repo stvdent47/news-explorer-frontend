@@ -38,3 +38,9 @@
     padding: 48px 0;
   }
 }
+
+@media all and (max-width: 650px) {
+  .loader {
+    padding: 32px 0;
+  }
+}

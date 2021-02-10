@@ -1,7 +1,7 @@
 import React from 'react';
 import './Search.css';
 // components
-import SearchForm from '../SearchInput/SearchForm.jsx';
+import SearchForm from '../SearchForm/SearchForm.jsx';
 // constants
 import { SEARCH_HEADING, SEARCH_SUBHEADING } from '../../utils/constants.js';
 
