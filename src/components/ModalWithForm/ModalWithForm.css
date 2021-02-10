@@ -73,7 +73,7 @@
 }
 
 .modal__input-error:last-of-type {
-  margin: 3px 36px 0;
+  margin: 3px 36px 21px;
 }
 
 .modal__input-error_visible {
@@ -97,7 +97,7 @@
 
 .modal__submit-button {
   display: block;
-  width: 360px;
+  width: 358px;
   height: 64px;
   font-weight: 500;
   font-size: 18px;
@@ -157,4 +157,8 @@
 
 .modal__close-button:hover {
   cursor: pointer;
+}
+
+@media all and (max-width: 920px) {
+
 }

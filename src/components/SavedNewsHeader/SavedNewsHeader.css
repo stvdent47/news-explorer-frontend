@@ -29,3 +29,27 @@
 .saved-news__keywords_bold {
   font-weight: 700;
 }
+
+@media all and (max-width: 920px) {
+  .saved-news {
+    padding: 24px 0 32px;
+  }
+  .saved-news__tip {
+    font-size: 14px;
+    line-height: 171%;
+    padding: 0 40px;
+  }
+
+  .saved-news__heading {
+    font-size: 30px;
+    line-height: 113%;
+    padding: 16px 0 0 40px;
+    max-width: 336px;
+  }
+
+  .saved-news__keywords {
+    font-size: 14px;
+    line-height: 171%;
+    padding: 16px 0 0 40px;
+  }
+}
