@@ -39,7 +39,7 @@ const HeaderAuthMenu = (props) => {
             </li>
             <li className='auth-menu__list-item'>
               <button className='auth-menu__button-link'>
-                <p className='auth-menu__button-link-text'>{props.username}</p>
+                <span className='auth-menu__button-link-text'>{props.username}</span>
                 <img src={signoutIcon} alt='иконка выхода' className='auth-menu__button-link-image' />
               </button>
             </li>

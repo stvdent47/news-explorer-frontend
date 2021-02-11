@@ -31,26 +31,33 @@ const Navbar = (props) => {
             {MAIN_PAGE_NAME}
           </NavLink>
         </li>
-        <li className='navbar-list__item'>
-          <NavLink to='/saved-news' className={navbarTextLinkStyle} activeClassName={navbarTextLinkActiveStyle}>
-            {SAVED_NEWS_PAGE_NAME}
-          </NavLink>
-        </li>
-        <li className='navbar-list__item'>
-          <button className={navbarButtonLinkStyle} onClick={props.openLoginModal}>
-            {SIGNIN_MODAL_NAME}
-          </button>
-        </li>
-        <li className='navbar-list__item'>
-          <button className={navbarSignoutLinkStyle}>
-            <p className='navbar-list__text-link_signout'>{props.username}</p>
-            <img
-              src={currentPage.currentPageLink === '/saved-news' ? signoutIconBlack : signoutIcon}
-              alt='иконка выхода'
-              className='navbar-list__button-image'
-            />
-          </button>
-        </li>
+        {props.isLoggedIn ? (
+          <li className='navbar-list__item'>
+            <NavLink to='/saved-news' className={navbarTextLinkStyle} activeClassName={navbarTextLinkActiveStyle}>
+              {SAVED_NEWS_PAGE_NAME}
+            </NavLink>
+          </li>
+        ) : null}
+
+        {!props.isLoggedIn ? (
+          <li className='navbar-list__item'>
+            <button className={navbarButtonLinkStyle} onClick={props.openLoginModal}>
+              {SIGNIN_MODAL_NAME}
+            </button>
+          </li>
+        ) : null}
+        {props.isLoggedIn ? (
+          <li className='navbar-list__item'>
+            <button className={navbarSignoutLinkStyle}>
+              <span className='navbar-list__text-link_signout'>{props.username}</span>
+              <img
+                src={currentPage.currentPageLink === '/saved-news' ? signoutIconBlack : signoutIcon}
+                alt='иконка выхода'
+                className='navbar-list__button-image'
+              />
+            </button>
+          </li>
+        ) : null}
       </ul>
     </nav>
   );

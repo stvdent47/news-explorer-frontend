@@ -22,30 +22,32 @@ const LoginModal = (props) => {
       submitButtonText={LOGIN_TEXT}
       switchToSigupModal={props.switchToSigupModal}
     >
-      <label htmlFor='emailInput' className='modal__input-title'>
+      <label htmlFor='emailInputLogin' className='modal__input-title'>
         {MODAL_INPUT_TITLE_EMAIL}
         <input
           type='text'
-          name='emailInput'
-          id='emailInput'
+          required
+          name='emailInputLogin'
+          id='emailInputLogin'
           className='modal__input'
           placeholder={EMAIL_INPUT_PLACEHOLDER}
         />
       </label>
-      <p className='modal__input-error' id='emailInputError'>
+      <p className='modal__input-error' id='emailInputLoginError'>
         {MOCK_WRONG_EMAIL_INPUT}
       </p>
-      <label htmlFor='' className='modal__input-title'>
+      <label htmlFor='passwordInputLogin' className='modal__input-title'>
         {MODAL_INPUT_TITLE_PASSWORD}
         <input
           type='text'
-          name='passwordInput'
-          id='passwordInput'
+          required
+          name='passwordInputLogin'
+          id='passwordInputLogin'
           className='modal__input'
           placeholder={PASSWORD_INPUT_PLACEHOLDER}
         />
       </label>
-      <p className='modal__input-error' id='passwordInputError'>
+      <p className='modal__input-error' id='passwordInputLoginError'>
         {MOCK_WRONG_EMAIL_INPUT}
       </p>
     </ModalWithForm>

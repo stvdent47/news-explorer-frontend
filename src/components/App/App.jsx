@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import './App.css';
 // components
@@ -14,6 +14,8 @@ import HeaderAuthMenu from '../Header/HeaderAuthMenu/HeaderAuthMenu.jsx';
 import { CurrentPageContext, currentPage } from '../../contexts/currentPageContext/currentPageContext.js';
 
 const App = () => {
+  //
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   // modal states
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [isSignupModalOpen, setIsSignupModalOpen] = useState(false);
@@ -54,15 +56,19 @@ const App = () => {
     setIsInfoTooltipOpen(false);
   };
 
+  useEffect(() => {
+    setIsLoggedIn(true);
+  }, [])
+
   return (
     <CurrentPageContext.Provider value={currentPage}>
       <Switch>
         <Route exact path='/'>
-          <Main openLoginModal={openLoginModal} toggleAuthMenu={toggleAuthMenu} />
+          <Main openLoginModal={openLoginModal} toggleAuthMenu={toggleAuthMenu} isLoggedIn={isLoggedIn} />
           <About />
         </Route>
         <Route>
-          <SavedNews exact path='/saved-news' toggleAuthMenu={toggleAuthMenu} />
+          <SavedNews exact path='/saved-news' toggleAuthMenu={toggleAuthMenu} isLoggedIn={isLoggedIn} />
         </Route>
       </Switch>
       <Footer />
@@ -77,7 +83,7 @@ const App = () => {
         isOpen={isAuthMenuOpen}
         toggleAuthMenu={toggleAuthMenu}
         openLoginModal={switchFromAuthMenuToLoginModal}
-        username='TESTINGTESTING'
+        username='TESTINGTESTINGTESTINGTESTING'
       />
     </CurrentPageContext.Provider>
   );

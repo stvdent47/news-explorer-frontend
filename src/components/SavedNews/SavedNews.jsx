@@ -16,7 +16,7 @@ const SavedNews = (props) => {
 
   return (
     <>
-      <Header toggleAuthMenu={props.toggleAuthMenu} />
+      <Header toggleAuthMenu={props.toggleAuthMenu} isLoggedIn={props.isLoggedIn} />
       <SavedNewsHeader />
       <Loader />
       <NewsCardList newsCards={newsCards} />

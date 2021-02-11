@@ -22,7 +22,7 @@ const Header = (props) => {
       <Link to='/' className='header__heading'>
         <p className={headerTextStyle}>{HEADER_TITLE}</p>
       </Link>
-      <Navbar username='TESTINGTESTINGTESTING' openLoginModal={props.openLoginModal} />
+      <Navbar username='TESTINGTESTINGTESTING' openLoginModal={props.openLoginModal} isLoggedIn={props.isLoggedIn} />
       <button className={headerBurgerButton} onClick={props.toggleAuthMenu} />
     </header>
   );

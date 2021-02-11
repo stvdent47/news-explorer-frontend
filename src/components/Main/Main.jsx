@@ -18,7 +18,7 @@ const Main = (props) => {
   return (
     <>
       <div className='main__background'>
-        <Header openLoginModal={props.openLoginModal} toggleAuthMenu={props.toggleAuthMenu} />
+        <Header openLoginModal={props.openLoginModal} toggleAuthMenu={props.toggleAuthMenu} isLoggedIn={props.isLoggedIn} />
         <Search />
       </div>
 

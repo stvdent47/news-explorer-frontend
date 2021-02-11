@@ -21,6 +21,12 @@
   color: #b6bcbf;
 }
 
+.search-form__input:focus {
+  caret-color: #2f71e5;
+  border: none;
+  border: 1px solid #2f71e5;
+}
+
 .search-form__submit-button {
   width: 168px;
   height: 64px;
