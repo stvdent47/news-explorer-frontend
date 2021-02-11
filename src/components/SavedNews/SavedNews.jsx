@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
-import './SavedNews.css';
-
+// components
 import Header from '../Header/Header.jsx';
 import SavedNewsHeader from '../SavedNewsHeader/SavedNewsHeader.jsx';
 import Loader from '../Loader/Loader.jsx';

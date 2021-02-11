@@ -11,7 +11,9 @@ export const LOADER_TEXT = 'Идет поиск новостей...';
 export const NO_SEARCH_RESULT_HEADING = 'Ничего не найдено';
 export const NO_SEARCH_RESULT_TEXT_MAIN_PAGE = 'К сожалению, по вашему запросу ничего не найдено.';
 export const NO_SEARCH_RESULT_TEXT_SAVED_NEWS_PAGE = 'К сожалению, у вас пока что нет сохранённых статей.';
+export const ABOUT_TITLE = 'Об авторе';
 export const FOOTER_COPYRIGHT_TEXT = '2020 Supersite, Powered by News API';
+export const YNDX_PRCTM = 'Яндекс.Практикум';
 export const SAVE_BUTTON_TOOLTIP_TEXT = 'Войдите, чтобы сохранять статьи'
 export const REMOVE_BUTTON_TOOLTIP_TEXT = 'Убрать из сохранённых';
 export const LOGIN_MODAL_TITLE = 'Вход';
@@ -28,3 +30,4 @@ export const INFOTOOLTIP_TEXT = 'Пользователь успешно зар�
 
 export const MOCK_SAVED_NEWS_HEADING = 'Грета, у вас 5 сохранённых статей';
 export const MOCK_WRONG_EMAIL_INPUT = 'Неправильный формат email';
+export const MOCK_UNIQUE_USER_ERROR = 'Такой пользователь уже есть';

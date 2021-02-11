@@ -9,8 +9,8 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  transition: all 0.2s linear;
+  background-color: rgba(0, 0, 0, .5);
+  transition: all .2s linear;
 }
 
 .auth-menu_visible {
@@ -20,7 +20,6 @@
 
 .auth-menu-container {
   width: 100%;
-  /* height: 286px; */
   background: #1a1b22;
   border-bottom-left-radius: 16px;
   border-bottom-right-radius: 16px;
@@ -30,7 +29,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  box-shadow: inset 0px -1px 0px rgba(255, 255, 255, 0.2);
+  box-shadow: inset 0px -1px 0px rgba(255, 255, 255, .2);
 }
 
 .auth-menu__text {
@@ -106,7 +105,6 @@
 .auth-menu__text-link {
   font-weight: 500;
   font-size: 18px;
-  /* line-height: 311%; */
   color: #fff;
   text-decoration: none;
 }

@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Footer.css';
-import { FOOTER_COPYRIGHT_TEXT } from '../../utils/constants.js';
+// text constants
+import { FOOTER_COPYRIGHT_TEXT, MAIN_PAGE_NAME, YNDX_PRCTM } from '../../utils/constants.js';
 
 const Footer = () => {
   return (
@@ -12,13 +13,13 @@ const Footer = () => {
         <ul className='footer__nav-list'>
           <li className='footer__list-item'>
             <Link to='/' className='footer__text-link'>
-              Главная
+              {MAIN_PAGE_NAME}
             </Link>
           </li>
 
           <li className='footer__list-item'>
             <a href='https://praktikum.yandex.ru/' target='blank' className='footer__text-link'>
-              Яндекс.Практикум
+              {YNDX_PRCTM}
             </a>
           </li>
         </ul>

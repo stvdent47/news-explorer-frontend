@@ -12,13 +12,13 @@
 }
 
 .loader__circle {
-	display: block;
-	width: 50px;
-	height: 50px;
-	border: 2px solid #f5f6f7;
-	border-bottom-color: #b6bcbf;
-	border-radius: 50%;
-	animation: spin .75s infinite linear;
+  display: block;
+  width: 50px;
+  height: 50px;
+  border: 2px solid #f5f6f7;
+  border-bottom-color: #b6bcbf;
+  border-radius: 50%;
+  animation: spin .75s infinite linear;
 }
 
 .loader__text {
@@ -28,9 +28,9 @@
 }
 
 @keyframes spin {
-	100% {
-		transform: rotate(360deg);
-	}
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 @media all and (max-width: 920px) {

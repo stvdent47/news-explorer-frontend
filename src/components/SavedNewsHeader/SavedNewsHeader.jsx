@@ -1,6 +1,6 @@
 import React from 'react';
 import './SavedNewsHeader.css';
-
+// text constants
 import { SAVED_NEWS_PAGE_NAME, MOCK_SAVED_NEWS_HEADING } from '../../utils/constants.js';
 
 const SavedNewsHeader = () => {

@@ -2,8 +2,11 @@ import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import './Navbar.css';
+// contexts
 import { CurrentPageContext } from '../../contexts/currentPageContext/currentPageContext.js';
+// text constants
 import { MAIN_PAGE_NAME, SAVED_NEWS_PAGE_NAME, SIGNIN_MODAL_NAME } from '../../utils/constants.js';
+// icons
 import signoutIcon from '../../images/signout-icon.svg';
 import signoutIconBlack from '../../images/signout-icon_black.svg';
 

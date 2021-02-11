@@ -7,7 +7,7 @@
 .saved-news__tip {
   margin: 0;
   padding: 0 104px;
-  color: rgba(26, 27, 34, 0.5);
+  color: rgba(26, 27, 34, .5);
 }
 
 .saved-news__heading {
@@ -34,6 +34,7 @@
   .saved-news {
     padding: 24px 0 32px;
   }
+  
   .saved-news__tip {
     font-size: 14px;
     line-height: 171%;

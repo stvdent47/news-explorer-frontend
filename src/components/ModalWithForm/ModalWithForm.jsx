@@ -1,6 +1,6 @@
 import React from 'react';
 import './ModalWithForm.css';
-
+// text constants
 import { LOGIN_TEXT, SIGNUP_TEXT } from '../../utils/constants.js';
 
 const ModalWithForm = (props) => {
