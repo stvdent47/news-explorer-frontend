@@ -8,14 +8,17 @@ import SavedNews from '../SavedNews/SavedNews.jsx';
 import Footer from '../Footer/Footer.jsx';
 import LoginModal from '../LoginModal/LoginModal.jsx';
 import SignupModal from '../SignupModal/SignupModal.jsx';
+import InfoTooltip from '../InfoTooltip/InfoTooltip.jsx';
 import HeaderAuthMenu from '../Header/HeaderAuthMenu/HeaderAuthMenu.jsx';
 // contexts
 import { CurrentPageContext, currentPage } from '../../contexts/currentPageContext/currentPageContext.js';
 
 const App = () => {
+  // modal states
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [isSignupModalOpen, setIsSignupModalOpen] = useState(false);
   const [isAuthMenuOpen, setIsAuthMenuOpen] = useState(false);
+  const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(true);
 
   const openLoginModal = () => {
     setIsLoginModalOpen(true);
@@ -40,9 +43,15 @@ const App = () => {
     setIsLoginModalOpen(true);
   };
 
+  const switchFromInfoTooltipToLoginModal = () => {
+    setIsInfoTooltipOpen(false);
+    setIsLoginModalOpen(true);
+  };
+
   const closeAllModals = () => {
     setIsLoginModalOpen(false);
     setIsSignupModalOpen(false);
+    setIsInfoTooltipOpen(false);
   };
 
   return (
@@ -59,6 +68,11 @@ const App = () => {
       <Footer />
       <LoginModal isOpen={isLoginModalOpen} onClose={closeAllModals} switchToSigupModal={switchToSigupModal} />
       <SignupModal isOpen={isSignupModalOpen} onClose={closeAllModals} switchToLoginModal={switchToLoginModal} />
+      <InfoTooltip
+        isOpen={isInfoTooltipOpen}
+        onClose={closeAllModals}
+        switchToLoginModal={switchFromInfoTooltipToLoginModal}
+      />
       <HeaderAuthMenu
         isOpen={isAuthMenuOpen}
         toggleAuthMenu={toggleAuthMenu}

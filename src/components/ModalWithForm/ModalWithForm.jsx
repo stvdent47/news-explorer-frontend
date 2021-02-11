@@ -22,7 +22,7 @@ const ModalWithForm = (props) => {
     );
 
   return (
-    <div className={`modal ${props.name} ${props.isOpen ? 'modal_opened' : null}`}>
+    <div className={`modal ${props.name} ${props.isOpen ? 'modal_opened' : ''}`}>
       <div className='modal__container'>
         <h2 className='modal__title'>{props.title}</h2>
         <form action='#'>
