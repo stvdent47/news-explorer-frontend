@@ -1,6 +1,7 @@
 import React from 'react';
+// components
 import ModalWithForm from '../ModalWithForm/ModalWithForm.jsx';
-
+// text constants
 import {
   LOGIN_MODAL_TITLE,
   LOGIN_TEXT,

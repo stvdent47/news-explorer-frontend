@@ -21,7 +21,8 @@ const Footer = () => {
               Яндекс.Практикум
             </a>
           </li>
-
+        </ul>
+        <ul className='footer__nav-list'>
           <li className='footer__list-item'>
             <a href='https://github.com/stvdent47' target='blank' className='footer__icon-link'>
               <div className='footer__icon-image footer__icon-image_git' />

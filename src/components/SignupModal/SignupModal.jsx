@@ -1,5 +1,4 @@
 import React from 'react';
-import './SignupModal.css';
 // components
 import ModalWithForm from '../ModalWithForm/ModalWithForm.jsx';
 import {
