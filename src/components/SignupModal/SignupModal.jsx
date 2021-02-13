@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 // components
 import ModalWithForm from '../ModalWithForm/ModalWithForm.jsx';
 // text constants
@@ -16,6 +16,18 @@ import {
 } from '../../utils/constants.js';
 
 const SignupModal = (props) => {
+  const [inputValues, setInputValues] = useState({});
+
+  const handleInputChange = (evt) => {
+    const inputName = evt.target.name;
+    const inputValue = evt.target.value;
+
+    setInputValues({
+      ...inputValues,
+      [inputName]: inputValue,
+    });
+  };
+
   return (
     <ModalWithForm
       name='signupModal'
@@ -28,10 +40,12 @@ const SignupModal = (props) => {
       <label htmlFor='emailInputSignup' className='modal__input-title'>
         {MODAL_INPUT_TITLE_EMAIL}
         <input
-          type='text'
+          type='email'
           required
           name='emailInputSignup'
           id='emailInputSignup'
+          onChange={handleInputChange}
+          value={inputValues.emailInputSignup}
           className='modal__input'
           placeholder={EMAIL_INPUT_PLACEHOLDER}
         />
@@ -42,10 +56,12 @@ const SignupModal = (props) => {
       <label htmlFor='passwordInputSignup' className='modal__input-title'>
         {MODAL_INPUT_TITLE_PASSWORD}
         <input
-          type='text'
+          type='password'
           required
           name='passwordInputSignup'
           id='passwordInputSignup'
+          onChange={handleInputChange}
+          value={inputValues.passwordInputSignup}
           className='modal__input'
           placeholder={PASSWORD_INPUT_PLACEHOLDER}
         />
@@ -60,6 +76,8 @@ const SignupModal = (props) => {
           required
           name='nameInputSignup'
           id='nameInputSignup'
+          onChange={handleInputChange}
+          value={inputValues.nameInputSignup}
           className='modal__input'
           placeholder={NAME_INPUT_PLACEHOLDER}
         />

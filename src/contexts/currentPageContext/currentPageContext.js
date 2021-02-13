@@ -1,7 +1,7 @@
 import { createContext } from 'react';
 
 export const currentPage = {
-  currentPageLink: '',
+  currentPageLink: '/',
 };
 
 export const CurrentPageContext = createContext();
