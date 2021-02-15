@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import './Main.css';
 // components
 import Header from '../Header/Header.jsx';
@@ -15,16 +15,29 @@ const Main = (props) => {
   const currentPage = useContext(CurrentPageContext);
   currentPage.currentPageLink = '/main';
 
+  const [isLoading, setIsLoading] = useState(true);
+  setTimeout(() => {
+    setIsLoading(false);
+  }, 3000);
+
   return (
     <>
       <div className='main__background'>
-        <Header openLoginModal={props.openLoginModal} toggleAuthMenu={props.toggleAuthMenu} isLoggedIn={props.isLoggedIn} />
+        <Header
+          openLoginModal={props.openLoginModal}
+          toggleAuthMenu={props.toggleAuthMenu}
+          isLoggedIn={props.isLoggedIn}
+          handleSignOut={props.handleSignOut}
+        />
         <Search />
       </div>
-
-      <Loader />
-      <NewsCardList newsCards={newsCards} />
-      <NoSearchResults />
+      {isLoading ? (
+        <Loader />
+      ) : newsCards.length ? (
+        <NewsCardList newsCards={newsCards} isLoggedIn={props.isLoggedIn} />
+      ) : (
+        <NoSearchResults />
+      )}
     </>
   );
 };

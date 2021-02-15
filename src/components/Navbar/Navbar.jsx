@@ -48,7 +48,7 @@ const Navbar = (props) => {
         ) : null}
         {props.isLoggedIn ? (
           <li className='navbar-list__item'>
-            <button className={navbarSignoutLinkStyle}>
+            <button className={navbarSignoutLinkStyle} onClick={props.handleSignOut}>
               <span className='navbar-list__text-link_signout'>{props.username}</span>
               <img
                 src={currentPage.currentPageLink === '/saved-news' ? signoutIconBlack : signoutIcon}

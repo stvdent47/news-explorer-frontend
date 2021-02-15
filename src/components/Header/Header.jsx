@@ -5,11 +5,13 @@ import './Header.css';
 // components
 import Navbar from '../Navbar/Navbar.jsx';
 // contexts
+import { CurrentUserContext } from '../../contexts/currentUserContext/currentUserContext.js';
 import { CurrentPageContext } from '../../contexts/currentPageContext/currentPageContext.js';
 // text constants
 import { HEADER_TITLE } from '../../utils/constants.js';
 
 const Header = (props) => {
+  const currentUser = useContext(CurrentUserContext)
   const currentPage = useContext(CurrentPageContext);
   const headerStyle = `header ${currentPage.currentPageLink === '/saved-news' ? 'header_black' : ''}`;
   const headerTextStyle = `header__text ${currentPage.currentPageLink === '/saved-news' ? 'header__text_black' : ''}`;
@@ -22,7 +24,7 @@ const Header = (props) => {
       <Link to='/' className='header__heading'>
         <p className={headerTextStyle}>{HEADER_TITLE}</p>
       </Link>
-      <Navbar username='TESTINGTESTINGTESTING' openLoginModal={props.openLoginModal} isLoggedIn={props.isLoggedIn} />
+      <Navbar username={currentUser.name} openLoginModal={props.openLoginModal} isLoggedIn={props.isLoggedIn} handleSignOut={props.handleSignOut} />
       <button className={headerBurgerButton} onClick={props.toggleAuthMenu} />
     </header>
   );

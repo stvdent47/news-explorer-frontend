@@ -10,7 +10,6 @@ const NewsCard = (props) => {
 
   const { image, date, title, text, source, link, keyword, saved } = props.card; // 'saved' is just for mock displaying
   // states
-  const isLoggedIn = false; // temp state
   const [isSaveTooltipOpen, setIsSaveTooltipOpen] = useState(false);
   const [isRemoveTooltipOpen, setIsRemoveTooltipOpen] = useState(false);
   // dynamic styles
@@ -18,7 +17,7 @@ const NewsCard = (props) => {
     saved === '1' && 'news-card__button_save-active'
   }`;
   const saveButtonTooltipStyle = `news-card__button-tooltip news-card__button-tooltip_save ${
-    isLoggedIn === false && isSaveTooltipOpen ? 'news-card__button-tooltip_open' : ''
+    props.isLoggedIn === false && isSaveTooltipOpen ? 'news-card__button-tooltip_open' : ''
   }`;
   const removeButtonTooltipStyle = `news-card__button-tooltip news-card__button-tooltip_remove ${
     isRemoveTooltipOpen ? 'news-card__button-tooltip_open' : ''

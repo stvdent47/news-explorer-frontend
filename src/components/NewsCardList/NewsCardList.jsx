@@ -15,7 +15,7 @@ const NewsCardList = (props) => {
       <h2 className='news-list__heading'>Результаты поиска</h2>
       <ul className='news-list__list'>
         {props.newsCards.map((card) => {
-          return <NewsCard key={card._id} card={card} />;
+          return <NewsCard key={card._id} card={card} isLoggedIn={props.isLoggedIn} />;
         })}
       </ul>
       {currentPage.currentPageLink === '/main' && (

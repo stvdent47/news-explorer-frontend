@@ -9,6 +9,7 @@ const ModalWithForm = ({
   isOpen,
   isSubmitDisabled = false,
   onClose,
+  onSubmit,
   switchToSigupModal,
   switchToLoginModal,
   submitButtonText,
@@ -31,17 +32,17 @@ const ModalWithForm = ({
       </p>
     );
 
-  const onSubmit = (evt) => {
+  const handleSubmit = (evt) => {
     evt.preventDefault();
 
-    console.log('submit');
+    onSubmit();
   };
 
   return (
     <div className={`modal ${name} ${isOpen ? 'modal_opened' : ''}`}>
       <div className='modal__container'>
         <h2 className='modal__title'>{title}</h2>
-        <form action='#' noValidate onSubmit={onSubmit}>
+        <form action='#' noValidate onSubmit={handleSubmit}>
           {children}
           <button
             type='submit'

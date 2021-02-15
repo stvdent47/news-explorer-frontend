@@ -95,11 +95,13 @@
   margin: 0 0 8px;
   padding: 0;
   text-align: center;
-  /* opacity: 0; */
+  opacity: 0;
+  visibility: hidden;
 }
 
 .modal__submit-error_visible {
   opacity: 1;
+  visibility: visible;
 }
 
 .modal__submit-button {
@@ -117,6 +119,11 @@
   padding: 0;
   border: none;
   border-radius: 100px;
+  outline: none;
+}
+
+.modal__submit-button:hover {
+  cursor: pointer;
 }
 
 .modal__submit-button_disabled {

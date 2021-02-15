@@ -27,7 +27,5 @@ export const EMAIL_INPUT_PLACEHOLDER = 'Введите почту';
 export const PASSWORD_INPUT_PLACEHOLDER = 'Введите пароль';
 export const NAME_INPUT_PLACEHOLDER = 'Введите своё имя';
 export const INFOTOOLTIP_TEXT = 'Пользователь успешно зарегистрирован!';
-
-export const MOCK_SAVED_NEWS_HEADING = 'Грета, у вас 5 сохранённых статей';
-export const MOCK_WRONG_EMAIL_INPUT = 'Неправильный формат email';
-export const MOCK_UNIQUE_USER_ERROR = 'Такой пользователь уже есть';
+export const WRONG_CREDENTIALS_ERROR = 'Неправильные почта или пароль';
+export const UNIQUE_USER_ERROR = 'Такой пользователь уже есть';

@@ -11,10 +11,17 @@ import {
   MODAL_INPUT_TITLE_PASSWORD,
   EMAIL_INPUT_PLACEHOLDER,
   PASSWORD_INPUT_PLACEHOLDER,
+  WRONG_CREDENTIALS_ERROR,
 } from '../../utils/constants.js';
 
 const LoginModal = (props) => {
   const { values, errors, isFormValid, handleChange, resetForm } = useFormWithValidation();
+
+  const onSubmit = () => {
+    const { email, password } = values;
+
+    props.onLogin(email, password);
+  };
 
   useEffect(() => {
     resetForm();
@@ -29,44 +36,43 @@ const LoginModal = (props) => {
       submitButtonText={LOGIN_TEXT}
       switchToSigupModal={props.switchToSigupModal}
       isSubmitDisabled={!isFormValid}
+      onSubmit={onSubmit}
     >
-      <label htmlFor='emailInputLogin' className='modal__input-title'>
+      <label htmlFor='email' className='modal__input-title'>
         {MODAL_INPUT_TITLE_EMAIL}
         <input
-          type='emai'
+          type='email'
           required
-          name='emailInputLogin'
+          name='email'
           id='emailInputLogin'
           onChange={handleChange}
-          value={values.emailInputLogin || ''}
+          value={values.email || ''}
           className='modal__input'
           placeholder={EMAIL_INPUT_PLACEHOLDER}
         />
       </label>
-      <p
-        className={`modal__input-error ${errors.emailInputLogin ? 'modal__input-error_visible' : ''}`}
-        id='emailInputLoginError'
-      >
-        {errors.emailInputLogin || 'no error'}
+      <p className={`modal__input-error ${errors.email ? 'modal__input-error_visible' : ''}`} id='emailError'>
+        {errors.email || 'no error'}
       </p>
-      <label htmlFor='passwordInputLogin' className='modal__input-title'>
+      <label htmlFor='password' className='modal__input-title'>
         {MODAL_INPUT_TITLE_PASSWORD}
         <input
           type='password'
           required
-          name='passwordInputLogin'
+          minLength='8'
+          name='password'
           id='passwordInputLogin'
           onChange={handleChange}
-          value={values.passwordInputLogin || ''}
+          value={values.password || ''}
           className='modal__input'
           placeholder={PASSWORD_INPUT_PLACEHOLDER}
         />
       </label>
-      <p
-        className={`modal__input-error ${errors.passwordInputLogin ? 'modal__input-error_visible' : ''}`}
-        id='passwordInputLoginError'
-      >
-        {errors.passwordInputLogin || 'no error'}
+      <p className={`modal__input-error ${errors.password ? 'modal__input-error_visible' : ''}`} id='passwordError'>
+        {errors.password || 'no error'}
+      </p>
+      <p className={`modal__submit-error ${props.loginError ? 'modal__submit-error_visible' : ''}`}>
+        {WRONG_CREDENTIALS_ERROR}
       </p>
     </ModalWithForm>
   );

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext } from 'react';
 // components
 import Header from '../Header/Header.jsx';
 import SavedNewsHeader from '../SavedNewsHeader/SavedNewsHeader.jsx';
@@ -14,13 +14,18 @@ const SavedNews = (props) => {
   const currentPage = useContext(CurrentPageContext);
   currentPage.currentPageLink = '/saved-news';
 
+  const [isLoading, setIsLoading] = useState(true);
+  setTimeout(() => {
+    setIsLoading(false);
+  }, 3000);
+
   return (
     <>
-      <Header toggleAuthMenu={props.toggleAuthMenu} isLoggedIn={props.isLoggedIn} />
+      <Header toggleAuthMenu={props.toggleAuthMenu} isLoggedIn={props.isLoggedIn} handleSignOut={props.handleSignOut} />
       <SavedNewsHeader />
-      <Loader />
-      <NewsCardList newsCards={newsCards} />
-      <NoSearchResults />
+      {isLoading ? <Loader /> : (newsCards.length ? <NewsCardList newsCards={newsCards} /> : <NoSearchResults />)}
+
+      {/* {newsCards.length ? <NewsCardList newsCards={newsCards} /> : <NoSearchResults />} */}
     </>
   );
 };
