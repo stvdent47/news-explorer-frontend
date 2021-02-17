@@ -7,7 +7,7 @@ window.env = {
   "npm_config_only": "",
   "npm_config_commit_hooks": "true",
   "npm_config_browser": "",
-  "npm_package_gitHead": "103aa24950b4b85e35eb1c4203d42e406e978273",
+  "npm_package_gitHead": "2fabca3b07904cd282a5447a2860e98f80fe6f45",
   "npm_config_also": "",
   "npm_config_sign_git_commit": "",
   "npm_config_rollback": "true",
@@ -63,7 +63,7 @@ window.env = {
   "npm_config_logs_max": "10",
   "npm_config_always_auth": "",
   "npm_package_browserslist_development_0": "last 1 chrome version",
-  "SSH_AUTH_SOCK": "/private/tmp/com.apple.launchd.khedB9IKCR/Listeners",
+  "SSH_AUTH_SOCK": "/private/tmp/com.apple.launchd.BrI8RH86ik/Listeners",
   "npm_package_browserslist_development_2": "last 1 safari version",
   "__CF_USER_TEXT_ENCODING": "0x1F5:0x7:0x31",
   "npm_execpath": "/Users/stvdent47/.nvm/versions/node/v12.18.3/lib/node_modules/npm/bin/npm-cli.js",
@@ -187,5 +187,7 @@ window.env = {
   "npm_config_link": "",
   "npm_config_format_package_lock": "true",
   "COLORTERM": "truecolor",
-  "API_URL": "http://localhost:3000"
+  "API_URL": "http://localhost:3000",
+  "NEWSAPI_URL": "http://newsapi.org/v2/everything?",
+  "NEWSAPI_KEY": "6705856c4e2040a6872c66e9fe6344b6"
 };

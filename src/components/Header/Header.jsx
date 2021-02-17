@@ -21,7 +21,7 @@ const Header = (props) => {
 
   return (
     <header className={headerStyle}>
-      <Link to='/' className='header__heading'>
+      <Link to='/' className='header__heading' onClick={() => localStorage.removeItem('articles')}>
         <p className={headerTextStyle}>{HEADER_TITLE}</p>
       </Link>
       <Navbar username={currentUser.name} openLoginModal={props.openLoginModal} isLoggedIn={props.isLoggedIn} handleSignOut={props.handleSignOut} />

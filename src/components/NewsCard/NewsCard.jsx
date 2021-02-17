@@ -8,14 +8,14 @@ import { SAVE_BUTTON_TOOLTIP_TEXT, REMOVE_BUTTON_TOOLTIP_TEXT } from '../../util
 const NewsCard = (props) => {
   const currentPage = useContext(CurrentPageContext);
 
-  const { image, date, title, text, source, link, keyword, saved } = props.card; // 'saved' is just for mock displaying
+  const { urlToImage, publishedAt, title, description, source, url } = props.article; // 'saved' is just for mock displaying
   // states
   const [isSaveTooltipOpen, setIsSaveTooltipOpen] = useState(false);
   const [isRemoveTooltipOpen, setIsRemoveTooltipOpen] = useState(false);
   // dynamic styles
-  const saveButtonStyle = `news-card__button news-card__button_save ${
-    saved === '1' && 'news-card__button_save-active'
-  }`;
+  // const saveButtonStyle = `news-card__button news-card__button_save ${
+  //   saved === '1' && 'news-card__button_save-active'
+  // }`;
   const saveButtonTooltipStyle = `news-card__button-tooltip news-card__button-tooltip_save ${
     props.isLoggedIn === false && isSaveTooltipOpen ? 'news-card__button-tooltip_open' : ''
   }`;
@@ -25,19 +25,19 @@ const NewsCard = (props) => {
 
   return (
     <li className='news-card'>
-      <a href={link} target='blank'>
-        <img src={image} alt={title} className='news-card__image' />
+      <a href={url} target='blank'>
+        <img src={urlToImage} alt={title} className='news-card__image' />
       </a>
-      <p className='news-card__date'>{date}</p>
+      <p className='news-card__date'>{publishedAt}</p>
       <p className='news-card__title'>{title}</p>
-      <p className='news-card__text'>{text}</p>
-      <a href={link} className='news-card__source'>
-        {source}
+      <p className='news-card__text'>{description}</p>
+      <a href={url} className='news-card__source' target='blank'>
+        {source.name}
       </a>
       {currentPage.currentPageLink === '/main' ? (
         <>
           <button
-            className={saveButtonStyle}
+            className='news-card__button'
             onMouseEnter={() => setIsSaveTooltipOpen(true)}
             onMouseLeave={() => setIsSaveTooltipOpen(false)}
           />
@@ -51,7 +51,7 @@ const NewsCard = (props) => {
             onMouseLeave={() => setIsRemoveTooltipOpen(false)}
           />
           <p className={removeButtonTooltipStyle}>{REMOVE_BUTTON_TOOLTIP_TEXT}</p>
-          <p className='news-card__keyword'>{keyword}</p>
+          <p className='news-card__keyword'>keyword</p>
         </>
       )}
     </li>

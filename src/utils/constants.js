@@ -6,6 +6,7 @@ export const SEARCH_HEADING = 'Что творится в мире?';
 export const SEARCH_SUBHEADING = 'Находите самые свежие статьи на любую тему и сохраняйте в своём личном кабинете.';
 export const SEARCH_BUTTON_TEXT = 'Искать';
 export const SEARCH_INPUT_PLACEHOLDER = 'Введите тему новости';
+export const SEARCH_ERROR_TEXT = 'Нужно ввести ключевое слово';
 export const SHOW_MORE_BUTTON = 'Показать еще';
 export const LOADER_TEXT = 'Идет поиск новостей...';
 export const NO_SEARCH_RESULT_HEADING = 'Ничего не найдено';

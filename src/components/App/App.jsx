@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import './App.css';
 //hocs
 import ProtectedRoute from '../../hocs/ProtectedRoute.jsx';
@@ -14,6 +14,7 @@ import InfoTooltip from '../InfoTooltip/InfoTooltip.jsx';
 import HeaderAuthMenu from '../Header/HeaderAuthMenu/HeaderAuthMenu.jsx';
 // api
 import api from '../../utils/api.js';
+
 // contexts
 import { CurrentUserContext } from '../../contexts/currentUserContext/currentUserContext';
 import { CurrentPageContext, currentPage } from '../../contexts/currentPageContext/currentPageContext.js';
@@ -22,6 +23,8 @@ const App = () => {
   // user states
   const [user, setUser] = useState({});
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  //
+  
   // modal states
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [loginError, setLoginError] = useState(false);
@@ -82,6 +85,7 @@ const App = () => {
       .then((res) => {
         if (res.token) {
           localStorage.setItem('jwt', res.token);
+          localStorage.removeItem('articles');
           tokenCheck();
         }
         closeAllModals();
@@ -94,6 +98,7 @@ const App = () => {
   // signing out
   const handleSignOut = () => {
     localStorage.removeItem('jwt');
+    localStorage.removeItem('articles');
     setUser({});
     setIsLoggedIn(false);
   };
@@ -136,7 +141,9 @@ const App = () => {
               openLoginModal={openLoginModal}
               toggleAuthMenu={toggleAuthMenu}
               isLoggedIn={isLoggedIn}
+              // isLoading={isLoading}
               handleSignOut={handleSignOut}
+              // onSearch={onSearch}
             />
             <About />
           </Route>
@@ -147,6 +154,9 @@ const App = () => {
             isLoggedIn={isLoggedIn}
             handleSignOut={handleSignOut}
           />
+          <Route path='/*'>
+            <Redirect to='/' />
+          </Route>
         </Switch>
         <Footer />
         <LoginModal
