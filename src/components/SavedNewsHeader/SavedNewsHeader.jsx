@@ -5,10 +5,9 @@ import { CurrentUserContext } from '../../contexts/currentUserContext/currentUse
 // text constants
 import { SAVED_NEWS_PAGE_NAME } from '../../utils/constants.js';
 
-const SavedNewsHeader = () => {
+const SavedNewsHeader = (props) => {
   const currentUser = useContext(CurrentUserContext);
-  const number = 5;
-  const savedNewsHeading = `${currentUser.name}, у вас ${number} сохранённых статей`
+  const savedNewsHeading = `${currentUser.name}, у вас ${props.articles.length} сохранённых статей`
 
   return (
     <section className='saved-news'>

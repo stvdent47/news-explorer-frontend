@@ -1,5 +1,7 @@
 import React, { useState, useContext } from 'react';
 import './NewsCard.css';
+// api
+import api from '../../utils/api';
 // contexts
 import { CurrentPageContext } from '../../contexts/currentPageContext/currentPageContext.js';
 // text constants
@@ -7,15 +9,12 @@ import { SAVE_BUTTON_TOOLTIP_TEXT, REMOVE_BUTTON_TOOLTIP_TEXT } from '../../util
 
 const NewsCard = (props) => {
   const currentPage = useContext(CurrentPageContext);
-
-  const { urlToImage, publishedAt, title, description, source, url } = props.article; // 'saved' is just for mock displaying
+  const { image, date, title, text, source, url } = props;
   // states
   const [isSaveTooltipOpen, setIsSaveTooltipOpen] = useState(false);
   const [isRemoveTooltipOpen, setIsRemoveTooltipOpen] = useState(false);
   // dynamic styles
-  // const saveButtonStyle = `news-card__button news-card__button_save ${
-  //   saved === '1' && 'news-card__button_save-active'
-  // }`;
+  const saveButtonStyle = `news-card__button news-card__button_save`;
   const saveButtonTooltipStyle = `news-card__button-tooltip news-card__button-tooltip_save ${
     props.isLoggedIn === false && isSaveTooltipOpen ? 'news-card__button-tooltip_open' : ''
   }`;
@@ -23,23 +22,36 @@ const NewsCard = (props) => {
     isRemoveTooltipOpen ? 'news-card__button-tooltip_open' : ''
   }`;
 
+  const saveArticle = () => {
+    if (props.isLoggedIn) {
+      const keyword = localStorage.getItem('keyword');
+      api
+        .saveArticle(props.article, keyword)
+        .then((res) => console.log('saved'))
+        .catch((err) => console.error(err));
+    } else {
+      return;
+    }
+  };
+
   return (
     <li className='news-card'>
       <a href={url} target='blank'>
-        <img src={urlToImage} alt={title} className='news-card__image' />
+        <img src={image} alt={title} className='news-card__image' />
       </a>
-      <p className='news-card__date'>{publishedAt}</p>
+      <p className='news-card__date'>{date}</p>
       <p className='news-card__title'>{title}</p>
-      <p className='news-card__text'>{description}</p>
+      <p className='news-card__text'>{text}</p>
       <a href={url} className='news-card__source' target='blank'>
-        {source.name}
+        {source}
       </a>
       {currentPage.currentPageLink === '/main' ? (
         <>
           <button
-            className='news-card__button'
+            className={saveButtonStyle}
             onMouseEnter={() => setIsSaveTooltipOpen(true)}
             onMouseLeave={() => setIsSaveTooltipOpen(false)}
+            onClick={saveArticle}
           />
           <p className={saveButtonTooltipStyle}>{SAVE_BUTTON_TOOLTIP_TEXT}</p>
         </>

@@ -5,13 +5,10 @@ import Header from '../Header/Header.jsx';
 import Search from '../Search/Search.jsx';
 import Loader from '../Loader/Loader.jsx';
 import NewsCardList from '../NewsCardList/NewsCardList.jsx';
-
-//
+// api
 import newsApi from '../../utils/NewsApi.js';
 // contexts
 import { CurrentPageContext } from '../../contexts/currentPageContext/currentPageContext.js';
-// mock data for news card displaying
-import newsCards from '../../mockData/cards.json';
 
 const Main = (props) => {
   const currentPage = useContext(CurrentPageContext);
@@ -31,7 +28,7 @@ const Main = (props) => {
         localStorage.setItem('articles', JSON.stringify(res.articles))
         // setArticles(res.articles);
         // setArticles(JSON.parse(localStorage.getItem('articles')))
-        console.log(articles)
+        // console.log(articles)
         // console.log(JSON.parse(localStorage.getItem('articles')));
       })
       .catch((err) => console.error(err))

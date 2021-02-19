@@ -23,7 +23,31 @@ const NewsCardList = ({ articles, isLoggedIn }) => {
       <h2 className='news-list__heading'>Результаты поиска</h2>
       <ul className='news-list__list'>
         {articlesToRender.map((article) => {
-          return <NewsCard key={article.url} article={article} isLoggedIn={isLoggedIn} />;
+          if (currentPage.currentPageLink === '/main') {
+            return <NewsCard
+              key={article.url}
+              article={article}
+              image={article.urlToImage}
+              date={article.publishedAt}
+              title={article.title}
+              text={article.description}
+              source={article.source.name}
+              url={article.url}
+              isLoggedIn={isLoggedIn}
+            />
+          } else {
+            return <NewsCard
+              key={article.url}
+              article={article}
+              image={article.image}
+              date={article.date}
+              title={article.title}
+              text={article.text}
+              source={article.source}
+              url={article.url}
+              isLoggedIn={isLoggedIn}
+            />
+          };
         })}
       </ul>
       {currentPage.currentPageLink === '/main' && (

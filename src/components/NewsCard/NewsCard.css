@@ -15,7 +15,7 @@
   width: 100%;
   height: 272px;
   object-fit: cover;
-  object-position: center;
+  object-position: left;
 }
 
 .news-card__date {
@@ -37,6 +37,7 @@
   font-size: 26px;
   line-height: 115%;
   max-width: 352px;
+  height: 87px;
   margin: 0;
   padding: 12px 24px 0;
   text-overflow: ellipsis;

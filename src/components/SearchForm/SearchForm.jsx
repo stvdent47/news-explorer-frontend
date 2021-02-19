@@ -1,20 +1,20 @@
 import React from 'react';
 import './SearchForm.css';
 //
-import useForm from '../../hooks/useForm.jsx';
+import useFormWithValidation from '../../hooks/useFormWithValidation.jsx';
 // text constants
 import { SEARCH_BUTTON_TEXT, SEARCH_INPUT_PLACEHOLDER, SEARCH_ERROR_TEXT } from '../../utils/constants.js';
 
 const SearchForm = (props) => {
-  const { values, setValues, handleChange } = useForm();
+  const { values, errors, isFormValid, handleChange, resetForm } = useFormWithValidation();
 
-  const mockErrorState = false;
-  const searchFormErrorStyle = `search-form__error ${mockErrorState ? 'search-form__error' : ''}`;
+  const searchFormErrorStyle = `search-form__error ${errors.searchInput ? 'search-form__error_visible' : ''}`;
 
   const onSubmit = (evt) => {
     evt.preventDefault();
 
-    console.log('input', values.searchInput);
+    console.log('input:', values.searchInput);
+    localStorage.setItem('keyword', values.searchInput);
     props.onSearch(values.searchInput);
   };
 

@@ -1,6 +1,4 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
-
 import './Header.css';
 // components
 import Navbar from '../Navbar/Navbar.jsx';
@@ -21,9 +19,9 @@ const Header = (props) => {
 
   return (
     <header className={headerStyle}>
-      <Link to='/' className='header__heading' onClick={() => localStorage.removeItem('articles')}>
+      <a href='/' className='header__heading' onClick={() => localStorage.removeItem('articles')}>
         <p className={headerTextStyle}>{HEADER_TITLE}</p>
-      </Link>
+      </a>
       <Navbar username={currentUser.name} openLoginModal={props.openLoginModal} isLoggedIn={props.isLoggedIn} handleSignOut={props.handleSignOut} />
       <button className={headerBurgerButton} onClick={props.toggleAuthMenu} />
     </header>
