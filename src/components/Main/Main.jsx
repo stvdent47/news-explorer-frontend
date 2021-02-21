@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import './Main.css';
 // components
 import Header from '../Header/Header.jsx';
@@ -7,17 +7,11 @@ import Loader from '../Loader/Loader.jsx';
 import NewsCardList from '../NewsCardList/NewsCardList.jsx';
 // api
 import newsApi from '../../utils/NewsApi.js';
-// contexts
-import { CurrentPageContext } from '../../contexts/currentPageContext/currentPageContext.js';
 
 const Main = (props) => {
-  const currentPage = useContext(CurrentPageContext);
-  currentPage.currentPageLink = '/main';
-
   const [isLoading, setIsLoading] = useState(false);
   // const [articles, setArticles] = useState(null);
-  const articles = JSON.parse(localStorage.getItem('articles'))
-
+  const articles = JSON.parse(localStorage.getItem('articles'));
 
   const onSearch = (keyword) => {
     setIsLoading(true);
@@ -25,7 +19,7 @@ const Main = (props) => {
       .getNews(keyword)
       .then((res) => {
         // setIsLoading(false);
-        localStorage.setItem('articles', JSON.stringify(res.articles))
+        localStorage.setItem('articles', JSON.stringify(res.articles));
         // setArticles(res.articles);
         // setArticles(JSON.parse(localStorage.getItem('articles')))
         // console.log(articles)
@@ -42,13 +36,11 @@ const Main = (props) => {
           openLoginModal={props.openLoginModal}
           toggleAuthMenu={props.toggleAuthMenu}
           isLoggedIn={props.isLoggedIn}
-          handleSignOut={props.handleSignOut}
+          onSignOut={props.onSignOut}
         />
-        <Search onSearch={onSearch}/>
+        <Search onSearch={onSearch} />
       </div>
-      {isLoading ? (
-        <Loader />
-      ) : (<NewsCardList articles={articles} isLoggedIn={props.isLoggedIn} />)}
+      {isLoading ? <Loader /> : <NewsCardList articles={articles} isLoggedIn={props.isLoggedIn} saveArticle={props.saveArticle} />}
     </>
   );
 };

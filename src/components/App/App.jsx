@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch, Redirect, useHistory } from 'react-router-dom';
 import './App.css';
 //hocs
 import ProtectedRoute from '../../hocs/ProtectedRoute.jsx';
@@ -13,18 +13,16 @@ import SignupModal from '../SignupModal/SignupModal.jsx';
 import InfoTooltip from '../InfoTooltip/InfoTooltip.jsx';
 import HeaderAuthMenu from '../Header/HeaderAuthMenu/HeaderAuthMenu.jsx';
 // api
-import api from '../../utils/api.js';
-
+import api from '../../utils/MainApi.js';
 // contexts
 import { CurrentUserContext } from '../../contexts/currentUserContext/currentUserContext';
-import { CurrentPageContext, currentPage } from '../../contexts/currentPageContext/currentPageContext.js';
 
 const App = () => {
   // user states
-  const [user, setUser] = useState({});
+  const [currentUser, setcurrentUser] = useState({});
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   //
-  
+  const history = useHistory();
   // modal states
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [loginError, setLoginError] = useState(false);
@@ -66,7 +64,7 @@ const App = () => {
     evt.key === 'Escape' && closeAllModals();
   };
   // creating a new account
-  const handleSignup = (email, password, name) => {
+  const onRegister = (email, password, name) => {
     api
       .createUser(email, password, name)
       .then(() => {
@@ -79,7 +77,7 @@ const App = () => {
       });
   };
   // signing in
-  const handleLogin = (email, password) => {
+  const onLogin = (email, password) => {
     api
       .login(email, password)
       .then((res) => {
@@ -96,13 +94,13 @@ const App = () => {
       });
   };
   // signing out
-  const handleSignOut = () => {
-    localStorage.removeItem('jwt');
-    localStorage.removeItem('articles');
-    setUser({});
+  const onSignOut = () => {
+    localStorage.clear();
+    setcurrentUser({});
     setIsLoggedIn(false);
+    history.push('/'); // непонятно зачем, но так в чеклисте
   };
-  // checking if the token is ok
+  // checking if the token is correct
   const tokenCheck = () => {
     const jwt = localStorage.getItem('jwt');
     if (jwt) {
@@ -110,7 +108,7 @@ const App = () => {
         .getCurrentUser(jwt)
         .then((user) => {
           const { name, email } = user;
-          setUser({
+          setcurrentUser({
             name,
             email,
           });
@@ -119,10 +117,44 @@ const App = () => {
         .catch((err) => console.error(err));
     }
   };
+  // getting saved articles for a user
+  const getSavedArticles = (saveArticlesCb, setIsLoadingCb) => {
+    api
+      .getSavedArticles()
+      .then((articles) => saveArticlesCb(articles))
+      .catch((err) => console.error(err))
+      .finally(setIsLoadingCb(false));
+  };
+  // saving an article
+  const saveArticle = (article) => {
+    // saving is only possible if a user is logged in, if not => open login modal
+    if (isLoggedIn) {
+      const keyword = localStorage.getItem('keyword');
+      api
+        .saveArticle(article, keyword.toLowerCase())
+        .then((res) => console.log('saved'))
+        .catch((err) => console.error(err));
+    } else {
+      setIsLoginModalOpen(true);
+    }
+  };
+
+  const deleteArticle = (articleId, savedArticles, setSavedArticlesCb) => {
+    api
+      .deleteArticle(articleId)
+      .then(() => {
+        const newArticles = savedArticles.filter((article) => article._id !== articleId);
+        setSavedArticlesCb(newArticles);
+      })
+      .catch((err) => console.error(err));
+  };
 
   useEffect(() => {
     tokenCheck();
-  }, []);
+    // if the history action is replace => the user was redirected from
+    // saved news when the token was checked => move the user back to saved news
+    history.action === 'REPLACE' && history.replace('/saved-news');
+  }, [history]);
 
   useEffect(() => {
     document.addEventListener('keydown', closeModalsByEsc);
@@ -133,59 +165,58 @@ const App = () => {
   }, []);
 
   return (
-    <CurrentUserContext.Provider value={user}>
-      <CurrentPageContext.Provider value={currentPage}>
-        <Switch>
-          <Route exact path='/'>
-            <Main
-              openLoginModal={openLoginModal}
-              toggleAuthMenu={toggleAuthMenu}
-              isLoggedIn={isLoggedIn}
-              // isLoading={isLoading}
-              handleSignOut={handleSignOut}
-              // onSearch={onSearch}
-            />
-            <About />
-          </Route>
-          <ProtectedRoute
-            component={SavedNews}
-            path='/saved-news'
+    <CurrentUserContext.Provider value={currentUser}>
+      <Switch>
+        <Route exact path='/'>
+          <Main
+            openLoginModal={openLoginModal}
             toggleAuthMenu={toggleAuthMenu}
             isLoggedIn={isLoggedIn}
-            handleSignOut={handleSignOut}
+            onSignOut={onSignOut}
+            saveArticle={saveArticle}
           />
-          <Route path='/*'>
-            <Redirect to='/' />
-          </Route>
-        </Switch>
-        <Footer />
-        <LoginModal
-          isOpen={isLoginModalOpen}
-          onClose={closeAllModals}
-          switchToSigupModal={switchToSigupModal}
-          onLogin={handleLogin}
-          loginError={loginError}
-        />
-        <SignupModal
-          isOpen={isSignupModalOpen}
-          onClose={closeAllModals}
-          switchToLoginModal={switchToLoginModal}
-          onSignup={handleSignup}
-          signupError={signupError}
-        />
-        <InfoTooltip
-          isOpen={isInfoTooltipOpen}
-          onClose={closeAllModals}
-          switchToLoginModal={switchFromInfoTooltipToLoginModal}
-        />
-        <HeaderAuthMenu
-          isOpen={isAuthMenuOpen}
+          <About />
+        </Route>
+        <ProtectedRoute
+          component={SavedNews}
+          path='/saved-news'
           toggleAuthMenu={toggleAuthMenu}
-          openLoginModal={switchFromAuthMenuToLoginModal}
           isLoggedIn={isLoggedIn}
-          handleSignOut={handleSignOut}
+          onSignOut={onSignOut}
+          getSavedArticles={getSavedArticles}
+          deleteArticle={deleteArticle}
         />
-      </CurrentPageContext.Provider>
+        <Route path='/*'>
+          <Redirect to='/' />
+        </Route>
+      </Switch>
+      <Footer />
+      <LoginModal
+        isOpen={isLoginModalOpen}
+        onClose={closeAllModals}
+        switchToSigupModal={switchToSigupModal}
+        onLogin={onLogin}
+        loginError={loginError}
+      />
+      <SignupModal
+        isOpen={isSignupModalOpen}
+        onClose={closeAllModals}
+        switchToLoginModal={switchToLoginModal}
+        onRegister={onRegister}
+        signupError={signupError}
+      />
+      <InfoTooltip
+        isOpen={isInfoTooltipOpen}
+        onClose={closeAllModals}
+        switchToLoginModal={switchFromInfoTooltipToLoginModal}
+      />
+      <HeaderAuthMenu
+        isOpen={isAuthMenuOpen}
+        toggleAuthMenu={toggleAuthMenu}
+        openLoginModal={switchFromAuthMenuToLoginModal}
+        isLoggedIn={isLoggedIn}
+        onSignOut={onSignOut}
+      />
     </CurrentUserContext.Provider>
   );
 };

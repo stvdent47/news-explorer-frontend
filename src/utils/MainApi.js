@@ -1,6 +1,6 @@
 import env from 'react-dotenv';
 
-class Api {
+class MainApi {
   constructor({ url }) {
     this._url = url;
   }
@@ -79,12 +79,22 @@ class Api {
         link: article.url,
         image: article.urlToImage,
       }),
-    })
-      .then(this._checkErrors);
+    }).then(this._checkErrors);
+  }
+
+  deleteArticle(articleId) {
+    return fetch(`${this._url}/articles/${articleId}`, {
+      method: 'DELETE',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+      },
+    }).then(this._checkErrors);
   }
 }
 
-const api = new Api({
+const api = new MainApi({
   url: env.API_URL,
 });
 

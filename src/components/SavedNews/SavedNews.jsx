@@ -1,37 +1,30 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 // components
 import Header from '../Header/Header.jsx';
 import SavedNewsHeader from '../SavedNewsHeader/SavedNewsHeader.jsx';
 import Loader from '../Loader/Loader.jsx';
 import NewsCardList from '../NewsCardList/NewsCardList.jsx';
-// api
-import api from '../../utils/api.js';
-// contexts
-import { CurrentPageContext } from '../../contexts/currentPageContext/currentPageContext.js';
 
 const SavedNews = (props) => {
-  const currentPage = useContext(CurrentPageContext);
-  currentPage.currentPageLink = '/saved-news';
-
   const [isLoading, setIsLoading] = useState(true);
   const [savedArticles, setSavedArticles] = useState([]);
 
   useEffect(() => {
     setIsLoading(true);
 
-    api
-      .getSavedArticles()
-      .then((articles) => setSavedArticles(articles))
-      .catch((err) => console.error(err))
-      .finally(setIsLoading(false));
-  }, [])
+    props.getSavedArticles(setSavedArticles, setIsLoading);
+  }, []);
 
   return (
     <>
-      <Header toggleAuthMenu={props.toggleAuthMenu} isLoggedIn={props.isLoggedIn} handleSignOut={props.handleSignOut} />
+      <Header toggleAuthMenu={props.toggleAuthMenu} isLoggedIn={props.isLoggedIn} onSignOut={props.onSignOut} />
       <SavedNewsHeader articles={savedArticles} />
 
-      {isLoading ? <Loader /> : <NewsCardList articles={savedArticles}/>}
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <NewsCardList articles={savedArticles} deleteArticle={props.deleteArticle} setSavedArticles={setSavedArticles}/>
+      )}
     </>
   );
 };

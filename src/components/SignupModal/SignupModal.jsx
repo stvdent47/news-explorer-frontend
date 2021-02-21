@@ -22,7 +22,7 @@ const SignupModal = (props) => {
   const onSubmit = () => {
     const { email, password, name } = values;
 
-    props.onSignup(email, password, name);
+    props.onRegister(email, password, name);
   };
 
   useEffect(() => {

@@ -1,9 +1,7 @@
-import React, { useContext } from 'react';
-import { NavLink } from 'react-router-dom';
+import React from 'react';
+import { NavLink, useLocation } from 'react-router-dom';
 
 import './Navbar.css';
-// contexts
-import { CurrentPageContext } from '../../contexts/currentPageContext/currentPageContext.js';
 // text constants
 import { MAIN_PAGE_NAME, SAVED_NEWS_PAGE_NAME, SIGNIN_MODAL_NAME } from '../../utils/constants.js';
 // icons
@@ -11,8 +9,9 @@ import signoutIcon from '../../images/signout-icon.svg';
 import signoutIconBlack from '../../images/signout-icon_black.svg';
 
 const Navbar = (props) => {
-  const currentPage = useContext(CurrentPageContext);
-  const isSavedPage = currentPage.currentPageLink === '/saved-news';
+  const location = useLocation()
+  const currentPage = location.pathname;
+  const isSavedPage = currentPage === '/saved-news';
 
   const navbarTextLinkStyle = `navbar-list__text-link ${isSavedPage ? 'navbar-list__text-link_black' : ''}`;
   const navbarTextLinkActiveStyle = `navbar-list__text-link_active ${
@@ -48,10 +47,10 @@ const Navbar = (props) => {
         ) : null}
         {props.isLoggedIn ? (
           <li className='navbar-list__item'>
-            <button className={navbarSignoutLinkStyle} onClick={props.handleSignOut}>
+            <button className={navbarSignoutLinkStyle} onClick={props.onSignOut}>
               <span className='navbar-list__text-link_signout'>{props.username}</span>
               <img
-                src={currentPage.currentPageLink === '/saved-news' ? signoutIconBlack : signoutIcon}
+                src={isSavedPage ? signoutIconBlack : signoutIcon}
                 alt='иконка выхода'
                 className='navbar-list__button-image'
               />

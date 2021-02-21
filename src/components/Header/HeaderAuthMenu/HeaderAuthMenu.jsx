@@ -45,7 +45,7 @@ const HeaderAuthMenu = (props) => {
             ) : null}
             {props.isLoggedIn ? (
               <li className='auth-menu__list-item'>
-                <button className='auth-menu__button-link' onClick={props.handleSignOut}>
+                <button className='auth-menu__button-link' onClick={props.onSignOut}>
                   <span className='auth-menu__button-link-text'>{currentUser.name}</span>
                   <img src={signoutIcon} alt='иконка выхода' className='auth-menu__button-link-image' />
                 </button>
