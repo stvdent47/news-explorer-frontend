@@ -10,9 +10,8 @@ const SavedNews = (props) => {
   const [savedArticles, setSavedArticles] = useState([]);
 
   useEffect(() => {
-    setIsLoading(true);
-
-    props.getSavedArticles(setSavedArticles, setIsLoading);
+    setSavedArticles(JSON.parse(localStorage.getItem('savedArticles')))
+    setIsLoading(false);
   }, []);
 
   return (

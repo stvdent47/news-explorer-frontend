@@ -17,10 +17,14 @@ const Header = (props) => {
   const headerBurgerButton = `header__burger-button ${
     currentPage === '/saved-news' ? 'header__burger-button_black' : ''
   }`;
+  const onLogoClick = () => {
+    localStorage.removeItem('articles');
+    localStorage.removeItem('keyword');
+  }
 
   return (
     <header className={headerStyle}>
-      <a href='/' className='header__heading' onClick={() => localStorage.removeItem('articles')}>
+      <a href='/' className='header__heading' onClick={onLogoClick}>
         <p className={headerTextStyle}>{HEADER_TITLE}</p>
       </a>
       <Navbar username={currentUser.name} openLoginModal={props.openLoginModal} isLoggedIn={props.isLoggedIn} onSignOut={props.onSignOut} />

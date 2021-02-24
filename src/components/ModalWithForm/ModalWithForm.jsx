@@ -14,6 +14,7 @@ const ModalWithForm = ({
   switchToLoginModal,
   submitButtonText,
   children,
+  isSubmitting = false,
 }) => {
   const modalCaption =
     name === 'loginModal' ? (
@@ -46,7 +47,9 @@ const ModalWithForm = ({
           {children}
           <button
             type='submit'
-            className={`modal__submit-button ${isSubmitDisabled ? 'modal__submit-button_disabled' : ''}`}
+            className={`modal__submit-button ${
+              isSubmitDisabled && isSubmitting ? 'modal__submit-button_disabled' : ''
+            }`}
             disabled={isSubmitDisabled}
           >
             {submitButtonText}

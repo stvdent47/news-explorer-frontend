@@ -1,11 +1,21 @@
 import React from 'react';
-import { Route, Redirect } from 'react-router-dom';
+import { Route, useHistory } from 'react-router-dom';
 
 const ProtectedRoute = ({ component: Component, ...props }) => {
+  const history = useHistory();
+  
   return (
     <>
       <Route exact path={props.path}>
-        {() => (props.isLoggedIn ? <Component {...props} /> : <Redirect to='/' />)}
+        {() =>
+          localStorage.getItem('jwt') ? (
+            <Component {...props} />
+          ) : (
+            history.push('/', {
+              noAuthRedirect: true,
+            })
+          )
+        }
       </Route>
     </>
   );

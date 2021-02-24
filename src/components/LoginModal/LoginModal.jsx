@@ -36,6 +36,7 @@ const LoginModal = (props) => {
       submitButtonText={LOGIN_TEXT}
       switchToSigupModal={props.switchToSigupModal}
       isSubmitDisabled={!isFormValid}
+      isSubmitting={props.isSubmitting}
       onSubmit={onSubmit}
     >
       <label htmlFor='email' className='modal__input-title'>
@@ -49,6 +50,7 @@ const LoginModal = (props) => {
           value={values.email || ''}
           className='modal__input'
           placeholder={EMAIL_INPUT_PLACEHOLDER}
+          disabled={props.isSubmitting}
         />
       </label>
       <p className={`modal__input-error ${errors.email ? 'modal__input-error_visible' : ''}`} id='emailError'>
@@ -66,6 +68,7 @@ const LoginModal = (props) => {
           value={values.password || ''}
           className='modal__input'
           placeholder={PASSWORD_INPUT_PLACEHOLDER}
+          disabled={props.isSubmitting}
         />
       </label>
       <p className={`modal__input-error ${errors.password ? 'modal__input-error_visible' : ''}`} id='passwordError'>

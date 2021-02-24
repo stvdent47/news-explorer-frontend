@@ -4,7 +4,7 @@ import './SavedNewsHeader.css';
 import { CurrentUserContext } from '../../contexts/currentUserContext/currentUserContext.js';
 // text constants
 import { SAVED_NEWS_PAGE_NAME } from '../../utils/constants.js';
-//
+// functions for saved news header
 import { getEndingsForSavedArticles, getMostUsedKeywords } from '../../utils/savedNewsFns.js';
 
 const SavedNewsHeader = (props) => {

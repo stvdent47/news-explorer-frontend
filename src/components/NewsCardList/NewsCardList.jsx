@@ -19,6 +19,7 @@ const NewsCardList = ({ articles, isLoggedIn, saveArticle, deleteArticle, setSav
     articlesToRender = articles;
   }
   if (articles === null) return null;
+  const incrementArticleCount = () => setArticleCount(articleCount + 3);
 
   return articles.length !== 0 ? (
     <section className='news-list'>
@@ -38,6 +39,7 @@ const NewsCardList = ({ articles, isLoggedIn, saveArticle, deleteArticle, setSav
                 url={article.url}
                 isLoggedIn={isLoggedIn}
                 saveArticle={saveArticle}
+                deleteArticle={deleteArticle}
               />
             );
           } else {
@@ -62,7 +64,7 @@ const NewsCardList = ({ articles, isLoggedIn, saveArticle, deleteArticle, setSav
         })}
       </ul>
       {currentPage === '/' && (
-        <button className='news-list__show-more-button' onClick={() => setArticleCount(articleCount + 3)}>
+        <button className='news-list__show-more-button' onClick={incrementArticleCount}>
           {SHOW_MORE_BUTTON}
         </button>
       )}

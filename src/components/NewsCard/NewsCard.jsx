@@ -9,12 +9,28 @@ const NewsCard = (props) => {
   const currentPage = location.pathname;
 
   const { image, date, title, text, source, url, keyword } = props;
-  const { _id: articleId } = props.article;
   // states
   const [isSaveTooltipOpen, setIsSaveTooltipOpen] = useState(false);
+  const openSaveTooltip = () => setIsSaveTooltipOpen(true);
+  const closeSaveTooltip = () => setIsSaveTooltipOpen(false);
   const [isRemoveTooltipOpen, setIsRemoveTooltipOpen] = useState(false);
+  const openRemoveTooltip = () => setIsRemoveTooltipOpen(true);
+  const closeRemoveTooltip = () => setIsRemoveTooltipOpen(false);
   // dynamic styles
-  const saveButtonStyle = `news-card__button news-card__button_save`;
+  let isSaved = false;
+  let articleId;
+  const savedArticlesFromLocalStorage = JSON.parse(localStorage.getItem('savedArticles'));
+
+  if (currentPage === '/' && savedArticlesFromLocalStorage && savedArticlesFromLocalStorage.length > 0) {
+    savedArticlesFromLocalStorage.forEach((savedArticle) => {
+      if (savedArticle.link === props.article.url) {
+        isSaved = true;
+        articleId = savedArticle._id;
+      }
+    });
+  }
+  const saveButtonStyle = `news-card__button news-card__button_save ${isSaved ? 'news-card__button_save-active' : ''}`;
+
   const saveButtonTooltipStyle = `news-card__button-tooltip news-card__button-tooltip_save ${
     props.isLoggedIn === false && isSaveTooltipOpen ? 'news-card__button-tooltip_open' : ''
   }`;
@@ -22,13 +38,13 @@ const NewsCard = (props) => {
     isRemoveTooltipOpen ? 'news-card__button-tooltip_open' : ''
   }`;
 
-  const saveArticleCb = () => {
-    props.saveArticle(props.article);
-  }
+  const saveArticleButtonCb = () => {
+    !isSaved ? props.saveArticle(props.article) : props.deleteArticle(articleId);
+  };
 
-  const deleteArticleCb = () => {
-    props.deleteArticle(articleId, props.articles, props.setSavedArticles);
-  }
+  const deleteArticleButtonCb = () => {
+    props.deleteArticle(props.article._id, props.setSavedArticles);
+  };
 
   return (
     <li className='news-card'>
@@ -45,9 +61,9 @@ const NewsCard = (props) => {
         <>
           <button
             className={saveButtonStyle}
-            onMouseEnter={() => setIsSaveTooltipOpen(true)}
-            onMouseLeave={() => setIsSaveTooltipOpen(false)}
-            onClick={saveArticleCb}
+            onMouseEnter={openSaveTooltip}
+            onMouseLeave={closeSaveTooltip}
+            onClick={saveArticleButtonCb}
           />
           <p className={saveButtonTooltipStyle}>{SAVE_BUTTON_TOOLTIP_TEXT}</p>
         </>
@@ -55,9 +71,9 @@ const NewsCard = (props) => {
         <>
           <button
             className='news-card__button news-card__button_remove'
-            onMouseEnter={() => setIsRemoveTooltipOpen(true)}
-            onMouseLeave={() => setIsRemoveTooltipOpen(false)}
-            onClick={deleteArticleCb}
+            onMouseEnter={openRemoveTooltip}
+            onMouseLeave={closeRemoveTooltip}
+            onClick={deleteArticleButtonCb}
           />
           <p className={removeButtonTooltipStyle}>{REMOVE_BUTTON_TOOLTIP_TEXT}</p>
           <p className='news-card__keyword'>{keyword}</p>

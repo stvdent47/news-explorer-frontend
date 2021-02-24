@@ -61,7 +61,7 @@ class MainApi {
       },
     }).then(this._checkErrors);
   }
-  // urlToImage, publishedAt, title, description, source, url
+
   saveArticle(article, keyword) {
     return fetch(`${this._url}/articles`, {
       method: 'POST',

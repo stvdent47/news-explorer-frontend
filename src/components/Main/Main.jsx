@@ -10,7 +10,6 @@ import newsApi from '../../utils/NewsApi.js';
 
 const Main = (props) => {
   const [isLoading, setIsLoading] = useState(false);
-  // const [articles, setArticles] = useState(null);
   const articles = JSON.parse(localStorage.getItem('articles'));
 
   const onSearch = (keyword) => {
@@ -18,12 +17,7 @@ const Main = (props) => {
     newsApi
       .getNews(keyword)
       .then((res) => {
-        // setIsLoading(false);
         localStorage.setItem('articles', JSON.stringify(res.articles));
-        // setArticles(res.articles);
-        // setArticles(JSON.parse(localStorage.getItem('articles')))
-        // console.log(articles)
-        // console.log(JSON.parse(localStorage.getItem('articles')));
       })
       .catch((err) => console.error(err))
       .finally(() => setIsLoading(false));
@@ -40,7 +34,16 @@ const Main = (props) => {
         />
         <Search onSearch={onSearch} />
       </div>
-      {isLoading ? <Loader /> : <NewsCardList articles={articles} isLoggedIn={props.isLoggedIn} saveArticle={props.saveArticle} />}
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <NewsCardList
+          articles={articles}
+          isLoggedIn={props.isLoggedIn}
+          saveArticle={props.saveArticle}
+          deleteArticle={props.deleteArticle}
+        />
+      )}
     </>
   );
 };

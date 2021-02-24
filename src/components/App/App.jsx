@@ -107,23 +107,22 @@ const App = () => {
       api
         .getCurrentUser(jwt)
         .then((user) => {
+          setIsLoggedIn(true);
           const { name, email } = user;
           setcurrentUser({
             name,
             email,
           });
-          setIsLoggedIn(true);
         })
         .catch((err) => console.error(err));
     }
   };
   // getting saved articles for a user
-  const getSavedArticles = (saveArticlesCb, setIsLoadingCb) => {
+  const fetchSavedArticles = () => {
     api
       .getSavedArticles()
-      .then((articles) => saveArticlesCb(articles))
-      .catch((err) => console.error(err))
-      .finally(setIsLoadingCb(false));
+      .then((articles) => localStorage.setItem('savedArticles', JSON.stringify(articles)))
+      .catch((err) => console.error(err));
   };
   // saving an article
   const saveArticle = (article) => {
@@ -132,18 +131,33 @@ const App = () => {
       const keyword = localStorage.getItem('keyword');
       api
         .saveArticle(article, keyword.toLowerCase())
-        .then((res) => console.log('saved'))
+        .then((res) => fetchSavedArticles())
         .catch((err) => console.error(err));
     } else {
       setIsLoginModalOpen(true);
     }
   };
 
-  const deleteArticle = (articleId, savedArticles, setSavedArticlesCb) => {
+  const deleteArticleMainPage = (articleId) => {
     api
       .deleteArticle(articleId)
       .then(() => {
-        const newArticles = savedArticles.filter((article) => article._id !== articleId);
+        fetchSavedArticles();
+        const articlesFromLocalStorage = JSON.parse(localStorage.getItem('savedArticles'));
+        const newArticles = articlesFromLocalStorage.filter((item) => articleId !== item._id);
+        localStorage.setItem('savedArticles', JSON.stringify(newArticles));
+      })
+      .catch((err) => console.error(err));
+  };
+
+  const deleteArticleSavedNews = (articleId, setSavedArticlesCb) => {
+    api
+      .deleteArticle(articleId)
+      .then(() => {
+        fetchSavedArticles();
+        const articlesFromLocalStorage = JSON.parse(localStorage.getItem('savedArticles'));
+        const newArticles = articlesFromLocalStorage.filter((item) => articleId !== item._id);
+        localStorage.setItem('savedArticles', JSON.stringify(newArticles));
         setSavedArticlesCb(newArticles);
       })
       .catch((err) => console.error(err));
@@ -151,10 +165,16 @@ const App = () => {
 
   useEffect(() => {
     tokenCheck();
-    // if the history action is replace => the user was redirected from
-    // saved news when the token was checked => move the user back to saved news
-    history.action === 'REPLACE' && history.replace('/saved-news');
+
+    if (history.location.state && history.location.state.noAuthRedirect) {
+      setIsLoginModalOpen(true);
+      history.replace('/');
+    }
   }, [history]);
+
+  useEffect(() => {
+    isLoggedIn && fetchSavedArticles();
+  }, [isLoggedIn]);
 
   useEffect(() => {
     document.addEventListener('keydown', closeModalsByEsc);
@@ -174,6 +194,7 @@ const App = () => {
             isLoggedIn={isLoggedIn}
             onSignOut={onSignOut}
             saveArticle={saveArticle}
+            deleteArticle={deleteArticleMainPage}
           />
           <About />
         </Route>
@@ -183,8 +204,7 @@ const App = () => {
           toggleAuthMenu={toggleAuthMenu}
           isLoggedIn={isLoggedIn}
           onSignOut={onSignOut}
-          getSavedArticles={getSavedArticles}
-          deleteArticle={deleteArticle}
+          deleteArticle={deleteArticleSavedNews}
         />
         <Route path='/*'>
           <Redirect to='/' />

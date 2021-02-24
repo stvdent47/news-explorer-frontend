@@ -55,7 +55,6 @@ export function getMostUsedKeywords(articles, boldStyle) {
         <span>, </span>
         <span className={boldStyle}>{`${keywordsArr[1][0]}`}</span>
         <span>, </span>
-        {/* <span className={boldStyle}>{`${keywordsArr[2][0]}`}</span> */}
         <span> и {keywordsArr.length - 2} другим</span>
       </>
     );
