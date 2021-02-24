@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import './NewsCard.css';
+//
+import { getFullDate } from '../../utils/getMonthName.js';
 // text constants
 import { SAVE_BUTTON_TOOLTIP_TEXT, REMOVE_BUTTON_TOOLTIP_TEXT } from '../../utils/constants.js';
 
@@ -9,6 +11,7 @@ const NewsCard = (props) => {
   const currentPage = location.pathname;
 
   const { image, date, title, text, source, url, keyword } = props;
+  const fullDate = getFullDate(date);
   // states
   const [isSaveTooltipOpen, setIsSaveTooltipOpen] = useState(false);
   const openSaveTooltip = () => setIsSaveTooltipOpen(true);
@@ -51,7 +54,7 @@ const NewsCard = (props) => {
       <a href={url} target='blank'>
         <img src={image} alt={title} className='news-card__image' />
       </a>
-      <p className='news-card__date'>{date}</p>
+      <p className='news-card__date'>{fullDate}</p>
       <p className='news-card__title'>{title}</p>
       <p className='news-card__text'>{text}</p>
       <a href={url} className='news-card__source' target='blank'>
