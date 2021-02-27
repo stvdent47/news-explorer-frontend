@@ -5,13 +5,13 @@ import './NewsCardList.css';
 import NewsCard from '../NewsCard/NewsCard.jsx';
 import NoSearchResults from '../NoSearchResults/NoSearchResults.jsx';
 // text constants
-import { SHOW_MORE_BUTTON } from '../../utils/constants.js';
+import { SHOW_MORE_BUTTON, CARDS_TO_SHOW } from '../../utils/constants.js';
 
 const NewsCardList = ({ articles, isLoggedIn, saveArticle, deleteArticle, setSavedArticles }) => {
   const location = useLocation();
   const currentPage = location.pathname;
 
-  const [articleCount, setArticleCount] = useState(3);
+  const [articleCount, setArticleCount] = useState(CARDS_TO_SHOW);
   let articlesToRender;
   if (articles !== null && currentPage === '/') {
     articlesToRender = articles.slice(0, articleCount);
@@ -19,7 +19,7 @@ const NewsCardList = ({ articles, isLoggedIn, saveArticle, deleteArticle, setSav
     articlesToRender = articles;
   }
   if (articles === null) return null;
-  const incrementArticleCount = () => setArticleCount(articleCount + 3);
+  const incrementArticleCount = () => setArticleCount(articleCount + CARDS_TO_SHOW);
 
   return articles.length !== 0 ? (
     <section className='news-list'>

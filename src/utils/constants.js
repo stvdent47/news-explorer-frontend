@@ -30,3 +30,5 @@ export const NAME_INPUT_PLACEHOLDER = 'Введите своё имя';
 export const INFOTOOLTIP_TEXT = 'Пользователь успешно зарегистрирован!';
 export const WRONG_CREDENTIALS_ERROR = 'Неправильные почта или пароль';
 export const UNIQUE_USER_ERROR = 'Такой пользователь уже есть';
+export const CARDS_TO_SHOW = 3;
+export const DAYS_TO_SEARCH = 7;

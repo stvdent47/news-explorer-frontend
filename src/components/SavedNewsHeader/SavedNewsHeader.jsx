@@ -26,4 +26,4 @@ const SavedNewsHeader = (props) => {
   );
 };
 
-export default SavedNewsHeader;
+export default React.memo(SavedNewsHeader);

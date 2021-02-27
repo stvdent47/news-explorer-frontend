@@ -13,7 +13,7 @@ window.env = {
   "USER": "stvdent47",
   "COMMAND_MODE": "unix2003",
   "npm_config_globalconfig": "/usr/local/etc/npmrc",
-  "SSH_AUTH_SOCK": "/private/tmp/com.apple.launchd.GIwylM8T3H/Listeners",
+  "SSH_AUTH_SOCK": "/private/tmp/com.apple.launchd.R2k0m16X4R/Listeners",
   "__CF_USER_TEXT_ENCODING": "0x1F5:0x7:0x31",
   "npm_execpath": "/usr/local/lib/node_modules/npm/bin/npm-cli.js",
   "npm_config_init.module": "/Users/stvdent47/.npm-init.js",

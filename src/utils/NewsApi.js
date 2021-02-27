@@ -1,4 +1,5 @@
 import env from 'react-dotenv';
+import { DAYS_TO_SEARCH } from './constants.js';
 
 class NewsApi {
   constructor({ newsApiUrl, newsApiKey }) {
@@ -18,7 +19,7 @@ class NewsApi {
 
   getNews(keyword) {
     const dateNow = new Date();
-    const dateFrom = new Date(dateNow.getTime() - 7 * 24 * 60 * 60 * 1000);
+    const dateFrom = new Date(dateNow.getTime() - DAYS_TO_SEARCH * 24 * 60 * 60 * 1000);
     const dateFromForQuery = this.getDate(dateFrom);
     const dateToForQuery = this.getDate(dateNow);
     const queryUrl = `${this._newsApiUrl}q=${keyword}&language=ru&from=${dateFromForQuery}&to=${dateToForQuery}&sortBy=popularity&pageSize=100&apiKey=${this._newsApiKey}`;
