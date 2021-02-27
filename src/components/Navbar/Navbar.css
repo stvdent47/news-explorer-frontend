@@ -57,12 +57,17 @@
   color: #fff;
   height: 48px;
   background-color: transparent;
-  border: 1px solid #fff;
+  border: 1px solid #b6bcbf;
   border-radius: 100px;
   display: flex;
   flex-direction: row;
   align-items: center;
   outline: none;
+  transition: all .2s linear;
+}
+
+.navbar-list__button-link:hover {
+  border: 1px solid #fff;
 }
 
 .navbar-list__button-link_black {

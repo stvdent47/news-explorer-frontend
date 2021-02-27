@@ -1,31 +1,36 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
-
+import { useLocation } from 'react-router-dom';
 import './Header.css';
 // components
 import Navbar from '../Navbar/Navbar.jsx';
 // contexts
-import { CurrentPageContext } from '../../contexts/currentPageContext/currentPageContext.js';
+import { CurrentUserContext } from '../../contexts/currentUserContext/currentUserContext.js';
 // text constants
 import { HEADER_TITLE } from '../../utils/constants.js';
 
 const Header = (props) => {
-  const currentPage = useContext(CurrentPageContext);
-  const headerStyle = `header ${currentPage.currentPageLink === '/saved-news' ? 'header_black' : ''}`;
-  const headerTextStyle = `header__text ${currentPage.currentPageLink === '/saved-news' ? 'header__text_black' : ''}`;
+  const location = useLocation();
+  const currentPage = location.pathname;
+  const currentUser = useContext(CurrentUserContext)
+  const headerStyle = `header ${currentPage === '/saved-news' ? 'header_black' : ''}`;
+  const headerTextStyle = `header__text ${currentPage === '/saved-news' ? 'header__text_black' : ''}`;
   const headerBurgerButton = `header__burger-button ${
-    currentPage.currentPageLink === '/saved-news' ? 'header__burger-button_black' : ''
+    currentPage === '/saved-news' ? 'header__burger-button_black' : ''
   }`;
+  const onLogoClick = () => {
+    localStorage.removeItem('articles');
+    localStorage.removeItem('keyword');
+  }
 
   return (
     <header className={headerStyle}>
-      <Link to='/' className='header__heading'>
+      <a href='/' className='header__heading' onClick={onLogoClick}>
         <p className={headerTextStyle}>{HEADER_TITLE}</p>
-      </Link>
-      <Navbar username='TESTINGTESTINGTESTING' openLoginModal={props.openLoginModal} isLoggedIn={props.isLoggedIn} />
+      </a>
+      <Navbar username={currentUser.name} openLoginModal={props.openLoginModal} isLoggedIn={props.isLoggedIn} onSignOut={props.onSignOut} />
       <button className={headerBurgerButton} onClick={props.toggleAuthMenu} />
     </header>
   );
 };
 
-export default Header;
+export default React.memo(Header);

@@ -72,17 +72,19 @@
   font-size: 12px;
   line-height: 15px;
   color: #f00;
-  margin: 3px 36px 13px;
-  padding: 0;
-  /* opacity: 0; */
+  margin: 0 36px;
+  padding: 3px 0 13px;
+  opacity: 0;
+  visibility: hidden;
 }
 
 .modal__input-error:last-of-type {
-  margin: 3px 36px 21px;
+  padding: 3px 0 23px;
 }
 
 .modal__input-error_visible {
   opacity: 1;
+  visibility: visible;
 }
 
 .modal__submit-error {
@@ -93,11 +95,13 @@
   margin: 0 0 8px;
   padding: 0;
   text-align: center;
-  /* opacity: 0; */
+  opacity: 0;
+  visibility: hidden;
 }
 
 .modal__submit-error_visible {
   opacity: 1;
+  visibility: visible;
 }
 
 .modal__submit-button {
@@ -115,9 +119,14 @@
   padding: 0;
   border: none;
   border-radius: 100px;
+  outline: none;
 }
 
-.modal__submit-button_inactive {
+.modal__submit-button:hover {
+  cursor: pointer;
+}
+
+.modal__submit-button_disabled {
   color: #b6bcbf;
   background: #e6e8eb;
   box-shadow: none;
