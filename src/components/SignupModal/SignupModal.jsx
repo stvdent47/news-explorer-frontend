@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+// hooks
+import useFormWithValidation from '../../hooks/useFormWithValidation.jsx';
 // components
 import ModalWithForm from '../ModalWithForm/ModalWithForm.jsx';
 // text constants
@@ -11,11 +13,22 @@ import {
   PASSWORD_INPUT_PLACEHOLDER,
   MODAL_INPUT_TITLE_NAME,
   NAME_INPUT_PLACEHOLDER,
-  MOCK_WRONG_EMAIL_INPUT,
-  MOCK_UNIQUE_USER_ERROR,
+  UNIQUE_USER_ERROR,
 } from '../../utils/constants.js';
 
 const SignupModal = (props) => {
+  const { values, errors, isFormValid, handleChange, resetForm } = useFormWithValidation();
+
+  const onSubmit = () => {
+    const { email, password, name } = values;
+
+    props.onRegister(email, password, name);
+  };
+
+  useEffect(() => {
+    resetForm();
+  }, [props.isOpen, resetForm]);
+
   return (
     <ModalWithForm
       name='signupModal'
@@ -24,50 +37,69 @@ const SignupModal = (props) => {
       onClose={props.onClose}
       submitButtonText={SIGNUP_TEXT}
       switchToLoginModal={props.switchToLoginModal}
+      isSubmitDisabled={!isFormValid}
+      onSubmit={onSubmit}
     >
-      <label htmlFor='emailInputSignup' className='modal__input-title'>
+      <label htmlFor='email' className='modal__input-title'>
         {MODAL_INPUT_TITLE_EMAIL}
         <input
-          type='text'
+          type='email'
           required
-          name='emailInputSignup'
+          name='email'
           id='emailInputSignup'
+          onChange={handleChange}
+          value={values.email || ''}
           className='modal__input'
           placeholder={EMAIL_INPUT_PLACEHOLDER}
         />
       </label>
-      <p className='modal__input-error' id='emailInputSignupError'>
-        {MOCK_WRONG_EMAIL_INPUT}
+      <p
+        className={`modal__input-error ${errors.email ? 'modal__input-error_visible' : ''}`}
+        id='emailInputSignupError'
+      >
+        {errors.email || 'no error'}
       </p>
-      <label htmlFor='passwordInputSignup' className='modal__input-title'>
+      <label htmlFor='password' className='modal__input-title'>
         {MODAL_INPUT_TITLE_PASSWORD}
         <input
-          type='text'
+          type='password'
           required
-          name='passwordInputSignup'
+          minLength='8'
+          name='password'
           id='passwordInputSignup'
+          onChange={handleChange}
+          value={values.password || ''}
           className='modal__input'
           placeholder={PASSWORD_INPUT_PLACEHOLDER}
         />
       </label>
-      <p className='modal__input-error' id='passwordInputSignupError'>
-        {MOCK_WRONG_EMAIL_INPUT}
+      <p
+        className={`modal__input-error ${errors.password ? 'modal__input-error_visible' : ''}`}
+        id='passwordInputSignupError'
+      >
+        {errors.password || 'no error'}
       </p>
-      <label htmlFor='nameInputSignup' className='modal__input-title'>
+      <label htmlFor='name' className='modal__input-title'>
         {MODAL_INPUT_TITLE_NAME}
         <input
           type='text'
           required
-          name='nameInputSignup'
+          minLength='2'
+          maxLength='30'
+          name='name'
           id='nameInputSignup'
+          onChange={handleChange}
+          value={values.name || ''}
           className='modal__input'
           placeholder={NAME_INPUT_PLACEHOLDER}
         />
       </label>
-      <p className='modal__input-error' id='nameInputSignupError'>
-        {MOCK_WRONG_EMAIL_INPUT}
+      <p className={`modal__input-error ${errors.name ? 'modal__input-error_visible' : ''}`} id='nameInputSignupError'>
+        {errors.name || 'no error'}
       </p>
-      <p className='modal__submit-error'>{MOCK_UNIQUE_USER_ERROR}</p>
+      <p className={`modal__submit-error ${props.signupError ? 'modal__submit-error_visible' : ''}`}>
+        {UNIQUE_USER_ERROR}
+      </p>
     </ModalWithForm>
   );
 };

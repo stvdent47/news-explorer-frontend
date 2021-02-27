@@ -3,33 +3,59 @@ import './ModalWithForm.css';
 // text constants
 import { LOGIN_TEXT, SIGNUP_TEXT } from '../../utils/constants.js';
 
-const ModalWithForm = (props) => {
+const ModalWithForm = ({
+  name,
+  title,
+  isOpen,
+  isSubmitDisabled = false,
+  onClose,
+  onSubmit,
+  switchToSigupModal,
+  switchToLoginModal,
+  submitButtonText,
+  children,
+  isSubmitting = false,
+}) => {
   const modalCaption =
-    props.name === 'loginModal' ? (
+    name === 'loginModal' ? (
       <p className='modal__caption'>
         или{' '}
-        <span className='modal__caption-span' onClick={props.switchToSigupModal}>
+        <span className='modal__caption-span' onClick={switchToSigupModal}>
           {SIGNUP_TEXT}
         </span>
       </p>
     ) : (
       <p className='modal__caption'>
         или{' '}
-        <span className='modal__caption-span' onClick={props.switchToLoginModal}>
+        <span className='modal__caption-span' onClick={switchToLoginModal}>
           {LOGIN_TEXT}
         </span>
       </p>
     );
 
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+
+    onSubmit();
+  };
+
   return (
-    <div className={`modal ${props.name} ${props.isOpen ? 'modal_opened' : ''}`}>
+    <div className={`modal ${name} ${isOpen ? 'modal_opened' : ''}`}>
       <div className='modal__container'>
-        <h2 className='modal__title'>{props.title}</h2>
-        <form action='#'>
-          {props.children}
-          <button className='modal__submit-button'>{props.submitButtonText}</button>
+        <h2 className='modal__title'>{title}</h2>
+        <form action='#' noValidate onSubmit={handleSubmit}>
+          {children}
+          <button
+            type='submit'
+            className={`modal__submit-button ${
+              isSubmitDisabled && isSubmitting ? 'modal__submit-button_disabled' : ''
+            }`}
+            disabled={isSubmitDisabled}
+          >
+            {submitButtonText}
+          </button>
         </form>
-        <button className='modal__close-button' onClick={props.onClose} />
+        <button className='modal__close-button' onClick={onClose} />
         {modalCaption}
       </div>
     </div>

@@ -50,6 +50,20 @@
   background-color: #2a65cc;
 }
 
+.search-form__error {
+  color: rgb(255, 120, 120);
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.search-form__error_visible {
+  opacity: 1;
+  visibility: visible;
+}
+
 @media all and (max-width: 483px) {
   .search-form__input {
     padding: 17px 16px;

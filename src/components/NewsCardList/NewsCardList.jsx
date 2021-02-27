@@ -1,27 +1,76 @@
-import React, { useContext } from 'react';
+import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import './NewsCardList.css';
 // components
 import NewsCard from '../NewsCard/NewsCard.jsx';
-// contexts
-import { CurrentPageContext } from '../../contexts/currentPageContext/currentPageContext.js';
+import NoSearchResults from '../NoSearchResults/NoSearchResults.jsx';
 // text constants
-import { SHOW_MORE_BUTTON } from '../../utils/constants.js';
+import { SHOW_MORE_BUTTON, CARDS_TO_SHOW } from '../../utils/constants.js';
 
-const NewsCardList = (props) => {
-  const currentPage = useContext(CurrentPageContext);
+const NewsCardList = ({ articles, isLoggedIn, saveArticle, deleteArticle, setSavedArticles }) => {
+  const location = useLocation();
+  const currentPage = location.pathname;
 
-  return (
+  const [articleCount, setArticleCount] = useState(CARDS_TO_SHOW);
+  let articlesToRender;
+  if (articles !== null && currentPage === '/') {
+    articlesToRender = articles.slice(0, articleCount);
+  } else {
+    articlesToRender = articles;
+  }
+  if (articles === null) return null;
+  const incrementArticleCount = () => setArticleCount(articleCount + CARDS_TO_SHOW);
+
+  return articles.length !== 0 ? (
     <section className='news-list'>
       <h2 className='news-list__heading'>Результаты поиска</h2>
       <ul className='news-list__list'>
-        {props.newsCards.map((card) => {
-          return <NewsCard key={card._id} card={card} />;
+        {articlesToRender.map((article) => {
+          if (currentPage === '/') {
+            return (
+              <NewsCard
+                key={article.url}
+                article={article}
+                image={article.urlToImage}
+                date={article.publishedAt}
+                title={article.title}
+                text={article.description}
+                source={article.source.name}
+                url={article.url}
+                isLoggedIn={isLoggedIn}
+                saveArticle={saveArticle}
+                deleteArticle={deleteArticle}
+              />
+            );
+          } else {
+            return (
+              <NewsCard
+                key={article._id}
+                article={article}
+                image={article.image}
+                date={article.date}
+                title={article.title}
+                text={article.text}
+                source={article.source}
+                url={article.url}
+                keyword={article.keyword}
+                isLoggedIn={isLoggedIn}
+                deleteArticle={deleteArticle}
+                articles={articles}
+                setSavedArticles={setSavedArticles}
+              />
+            );
+          }
         })}
       </ul>
-      {currentPage.currentPageLink === '/main' && (
-        <button className='news-list__show-more-button'>{SHOW_MORE_BUTTON}</button>
+      {currentPage === '/' && (
+        <button className='news-list__show-more-button' onClick={incrementArticleCount}>
+          {SHOW_MORE_BUTTON}
+        </button>
       )}
     </section>
+  ) : (
+    <NoSearchResults />
   );
 };
 

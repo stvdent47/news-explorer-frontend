@@ -1,19 +1,29 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './SavedNewsHeader.css';
+// contexts
+import { CurrentUserContext } from '../../contexts/currentUserContext/currentUserContext.js';
 // text constants
-import { SAVED_NEWS_PAGE_NAME, MOCK_SAVED_NEWS_HEADING } from '../../utils/constants.js';
+import { SAVED_NEWS_PAGE_NAME } from '../../utils/constants.js';
+// functions for saved news header
+import { getEndingsForSavedArticles, getMostUsedKeywords } from '../../utils/savedNewsFns.js';
 
-const SavedNewsHeader = () => {
+const SavedNewsHeader = (props) => {
+  const currentUser = useContext(CurrentUserContext);
+  const savedNewsHeading = `${currentUser.name}, у вас ${props.articles.length} ${getEndingsForSavedArticles(
+    props.articles.length
+  )}`;
+
   return (
     <section className='saved-news'>
       <p className='saved-news__tip'>{SAVED_NEWS_PAGE_NAME}</p>
-      <h2 className='saved-news__heading'>{MOCK_SAVED_NEWS_HEADING}</h2>
-      <p className='saved-news__keywords'>
-        По ключевым словам: <span className='saved-news__keywords_bold'>Природа, Тайга</span> и{' '}
-        <span className='saved-news__keywords_bold'>2-м другим</span>
-      </p>
+      <h2 className='saved-news__heading'>{savedNewsHeading}</h2>
+      {props.articles.length ? (
+        <p className='saved-news__keywords'>
+          По ключевым словам: {getMostUsedKeywords(props.articles, 'saved-news__keywords_bold')}
+        </p>
+      ) : null}
     </section>
   );
 };
 
-export default SavedNewsHeader;
+export default React.memo(SavedNewsHeader);

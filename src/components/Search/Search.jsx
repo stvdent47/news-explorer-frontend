@@ -5,12 +5,12 @@ import SearchForm from '../SearchForm/SearchForm.jsx';
 // constants
 import { SEARCH_HEADING, SEARCH_SUBHEADING } from '../../utils/constants.js';
 
-const Search = () => {
+const Search = (props) => {
   return (
     <section className='search'>
       <h1 className='search__heading'>{SEARCH_HEADING}</h1>
       <p className='search__text'>{SEARCH_SUBHEADING}</p>
-      <SearchForm />
+      <SearchForm onSearch={props.onSearch}/>
     </section>
   );
 };
